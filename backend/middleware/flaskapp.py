@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,send_file
 from flask_cors import CORS
 import numpy as np
 import pandas as pd
 import os
 import tensorflow as tf
 import xgboost as xgb
-import joblib  # To load the scaler
+import joblib
 from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
@@ -109,21 +109,24 @@ def preprocess_data_after(form_data):
     venue = encode_venue(form_data['venue'])
     over, ball = divmod(float(form_data['over']), 1)
     over, ball = int(over), int(ball * 10)
-    current_score = form_data['current_score']
-    wickets = form_data['wickets']
+    cumulative_runs = form_data['current_score']
+    cumulative_wickets = form_data['wickets']
     first_innings_score = float(form_data['first_innings_score'])
-    
-    features = np.array([[batting_team, bowling_team, over, ball, current_score, wickets, venue, first_innings_score]])
-
+    column_names = [
+        'batting_team', 'bowling_team', 'over', 'ball', 
+        'cumulative_runs', 'cummulative_wickets', 'venue', 'first_innings_score'
+    ]
+    features = pd.DataFrame([[batting_team, bowling_team, over, ball, 
+                              cumulative_runs, cumulative_wickets, venue, first_innings_score]], 
+                             columns=column_names)
     if scaler:
         features_scaled = scaler.transform(features)
     else:
-        features_scaled = features 
-        
+        features_scaled = features.values
     return features_scaled.reshape(1, 1, 8)
 
+
 def preprocess_first_score(form_data):
-    # Encoding teams and venue
     battingteam = encode_team(form_data['batting_team'])
     bowlingteam = encode_team(form_data['bowling_team'])
     venue = encode_venue(form_data['venue'])
@@ -156,9 +159,9 @@ def preprocess_first_score(form_data):
     return inputs_first_scaled
 
 def preprocess_sec_innings(form_data):
-    batting = form_data["battingTeam"]
-    bowling = form_data["bowlingTeam"]
-    venue = form_data["venue"]
+    batting = encode_team(form_data["battingTeam"])
+    bowling = encode_team(form_data["bowlingTeam"])
+    venue = encode_venue(form_data["venue"])
     first = form_data["firstInningsScore"]
     over = form_data["over"]
     currentScore = form_data["currentScore"]
@@ -235,6 +238,5 @@ def predict_sec_score():
     except Exception as e:
         print(f"Prediction error: {e}")
         return jsonify({"error": f"Prediction error: {str(e)}"}), 500
-
 if __name__ == '__main__':
     app.run(debug=True)

@@ -16,7 +16,7 @@ const allVenues = [
 
 const fetchlogo = async (teamName, setLogo) => {
   try {
-    const response = await fetch('http://localhost:5000/api/logo/findlogo', {
+    const response = await fetch('http://localhost:3000/api/logo/findlogo', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -227,10 +227,7 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
       ) : (
         <div style={{ marginTop: '20px' }}>
           {predictionResult && (
-            <div>
-              <h3>Prediction Result</h3>
-              <p>The predicted winning team is: {predictionResult.predicted_team}</p>
-
+            <div className='dis'>
               <div className='outdisplay'>
                 <div className='logos'>
                   <div className='logodis'>

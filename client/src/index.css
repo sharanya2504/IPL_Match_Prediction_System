@@ -15,7 +15,7 @@ p{
     font-size: large;
 }
 button{
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
     border-radius: 4px;
     height: 45px;
     margin-bottom: 20px;
@@ -36,10 +36,39 @@ button{
     margin-left: 10px;
   }
   
-  .winp, .scop, .winner-options, .score-options {
+  .winp, .scop, .winner-options, .score-option{
+    /* height: 80px; */
+    margin: 0 auto;
+    cursor: pointer;
     margin-bottom: 20px;
-  } 
+    width: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius:20px ;
+}
+
+
+.back{
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 200px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius:20px ;
+  background-color: red;
+  color: white;
+} 
 .Main{
     
     color: White;
 }  
+
+.dis{
+  color: white;
+}

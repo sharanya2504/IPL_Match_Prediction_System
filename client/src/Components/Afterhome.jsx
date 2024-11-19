@@ -3,9 +3,10 @@ import WinnerBefore from './Winnerbefore';
 import WinnerAfter from './Winnerafter';
 import First from './First';
 import Second from './Second';
+// import './AfterHome.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+function AfterHome() {
   const [currentView, setCurrentView] = useState('');
 
   const handleBackToMain = () => setCurrentView('');
@@ -17,10 +18,10 @@ function App() {
       {currentView === '' && (
         <div>
           <center>
-          <button onClick={() => setCurrentView('winnerPredictions')}>
+          <button onClick={() => setCurrentView('winnerPredictions')} className="winp">
             Winner Predictions
           </button>
-          <button onClick={() => setCurrentView('scorePredictions')}>
+          <button onClick={() => setCurrentView('scorePredictions')} className='scop'>
             Score Predictions
           </button>
           </center>
@@ -29,17 +30,17 @@ function App() {
 
       {currentView === 'winnerPredictions' && (       
         <div>
-          <button onClick={() => setCurrentView('winnerBefore')}>Winner Before Match</button>
-          <button onClick={() => setCurrentView('winnerAfter')}>Winner After Inning</button>
-          <button onClick={handleBackToMain} >Back</button>
+          <button onClick={() => setCurrentView('winnerBefore')} className='winp'>Winner Before Match</button>
+          <button onClick={() => setCurrentView('winnerAfter')} className='winp'>Winner After Inning</button>
+          <button onClick={handleBackToMain} className='back'>Back</button>
         </div>
       )}
 
       {currentView === 'scorePredictions' && (
         <div>
-          <button onClick={() => setCurrentView('firstInnings')}>First Innings Score Prediction</button>
-          <button onClick={() => setCurrentView('secondInnings')}>Second Innings Score Prediction</button>
-          <button onClick={handleBackToMain}>Back</button>
+          <button onClick={() => setCurrentView('firstInnings')} className='scop'>First Innings Score Prediction</button>
+          <button onClick={() => setCurrentView('secondInnings')} className='scop'>Second Innings Score Prediction</button>
+          <button onClick={handleBackToMain} className='back'>Back</button>
         </div>
       )}
 
@@ -74,4 +75,4 @@ function App() {
   );
 }
 
-export default App;
+export default AfterHome;

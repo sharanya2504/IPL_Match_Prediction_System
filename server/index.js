@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5174', 
+    origin: 'http://localhost:5173', 
     credentials: true,               
   }));
 
@@ -29,7 +29,9 @@ app.use(session({
     },
   }));
   
-mongoose.connect("mongodb://localhost:27017/signup")
+// mongoose.connect("mongodb://localhost:27017/signup")
+mongoose.connect("mongodb+srv://ipl:ipl@cluster0.7kekl.mongodb.net/")
+
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
