@@ -160,7 +160,7 @@ function Second({ onBack }) {
     <div>
       <h2 className="Main">Second Innings Score Prediction</h2>
 
-      <form onSubmit={handleInningsSubmit}>
+      <form onSubmit={handleInningsSubmit} className='form'>
         <div>
           <label>Batting Team:</label>
           <select

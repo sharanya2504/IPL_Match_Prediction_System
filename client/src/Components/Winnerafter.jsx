@@ -130,7 +130,7 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
   return (
     <div>
       {!submitted ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='form'>
           <h2 className='Main'>Winner Prediction After Inning</h2>
 
           {error && <div className="error-message" style={{ color: "red" }}>{error}</div>}

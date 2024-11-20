@@ -93,7 +93,7 @@ function WinnerBefore({ onSubmit, onBack }) {
       <h2 className="Main">Winner Prediction Before Match</h2>
 
       {!prediction && !error && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='form'>
           <label>
             Team 1:
             <select name="team1" value={formData.team1} onChange={handleChange}>

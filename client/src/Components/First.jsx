@@ -161,7 +161,7 @@ function First({ onSubmit, onBack }) {
     <div>
       <h2 className="Main">First Innings Score Prediction</h2>
 
-      <form onSubmit={handleInningsSubmit}>
+      <form onSubmit={handleInningsSubmit} className='form'>
         <div>
           <label>Batting Team:</label>
           <select

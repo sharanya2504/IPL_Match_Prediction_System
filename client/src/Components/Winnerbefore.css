@@ -1,5 +1,5 @@
  /* Center the form container on the page */
- form {
+.form {
   width: 450px;
   height: 500px;
   margin: 20px auto;
