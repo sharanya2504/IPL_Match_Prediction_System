@@ -54,7 +54,7 @@ export const Login = ({ setIsLoggedIn, isLoggedIn }) => {
             lg: '30vw',     // 1200
             xl: '20vw',     // 1536 
             },
-            height:'60vh', }}>
+            height:'80vh', width:"60vh" }}>
                 <Typography component="h1" variant="h5" style={heading}> Login </Typography>
 
                 <form onSubmit={handleLogin}>
