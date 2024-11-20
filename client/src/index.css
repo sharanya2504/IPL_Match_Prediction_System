@@ -1,58 +1,59 @@
-body{
-    background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/05834e80113099.6210bd8ad5bf7.jpg');
-    background-size: cover;
-    background-position: center; 
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-
-}
-p{
-    font-size: large;
-}
-button{
-    /* background-color: greenyellow; */
-    border-radius: 4px;
-    height: 45px;
-    margin-bottom: 20px;
-    gap: 10px;
-  }
-  .winp{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: larger;
-    margin-top: 425px;
-    margin-left: 655px;
-  }
-  .scop{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: larger;
-    margin-left: 655px;
-  }
-  button {
-    margin-left: 10px;
-  }
-  
-  .winp, .scop, .winner-options, .score-option{
-    /* height: 80px; */
-    margin: 0 auto;
-    cursor: pointer;
-    margin-bottom: 20px;
-    width: 300px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius:20px ;
+body {
+  background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/05834e80113099.6210bd8ad5bf7.jpg');
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
+p {
+  font-size: large;
+}
 
-.back{
+button {
+  border-radius: 4px;
+  height: 45px;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.winp {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: larger;
+  margin-top: 425px;
+  margin-left: 655px;
+}
+
+.scop {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: larger;
+  margin-left: 655px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.winp, .scop, .winner-options, .score-option {
+  margin: 0 auto;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+.back {
   margin: 0 auto;
   margin-bottom: 20px;
   width: 200px;
@@ -61,18 +62,72 @@ button{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-radius:20px ;
+  border-radius: 20px;
   background-color: red;
   color: white;
-} 
-.Main{
-    
-    color: White;
-}  
+}
 
-.dis{
+.Main {
+  color: White;
+}
+
+.dis {
   color: white;
 }
-.prediction{
+
+.prediction {
   color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.team-logos {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.team-logos .team-logo {
+  width: 30%;
+  text-align: center;
+}
+
+.team-logos img {
+  width: 100%;
+  max-width: 150px;
+  margin-top: 10px;
+}
+
+.team1, .team2, .winner {
+  color: white;
+}
+
+.prediction-container {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background to ensure visibility */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: for some subtle shadow around the transparent box */
+  color: white; /* Ensures text remains readable */
+}
+
+.team-logo img, .winner-logo img {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 10px; /* Optional: rounded corners for the images */
+}
+
+button[type="button"] {
+  background-color: #f44336;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #e53935;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
 }

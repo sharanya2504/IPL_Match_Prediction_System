@@ -1,60 +1,70 @@
 import React, { useState } from 'react';
+import miLogo from '../logos/mi.png';
+import cskLogo from '../logos/csk.png';
+import rcbLogo from '../logos/rcb.png';
+import kkrLogo from '../logos/kkr.png';
+import dcLogo from '../logos/dc.png';
+import pbksLogo from '../logos/pbks.png';
+import rrLogo from '../logos/rr.png';
+import srhLogo from '../logos/srh.png';
+import lsgLogo from '../logos/lsg.png';
+import gtLogo from '../logos/gt.png';
+
+const teamLogos = {
+  "Mumbai Indians": miLogo,
+  "Chennai Super Kings": cskLogo,
+  "Royal Challengers Bangalore": rcbLogo,
+  "Kolkata Knight Riders": kkrLogo,
+  "Delhi Capitals": dcLogo,
+  "Punjab Kings": pbksLogo,
+  "Rajasthan Royals": rrLogo,
+  "Sunrisers Hyderabad": srhLogo,
+  "Lucknow Super Giants": lsgLogo,
+  "Gujarat Titans": gtLogo,
+};
+
+const stadiumTeamMap = {
+  'Wankhede Stadium': 4,
+  'MA Chidambaram Stadium': 1,
+  'M. Chinnaswamy Stadium': 7,
+  'Arun Jaitley Stadium': 2,
+  'Eden Gardens': 3,
+  'Rajiv Gandhi International Cricket Stadium': 8,
+  'Sawai Mansingh Stadium': 6,
+  'Punjab Cricket Association IS Bindra Stadium': 5,
+  'Narendra Modi Stadium': 0,
+  'Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium': 9,
+  'Others': -1,
+};
+
+const teams = [
+  'Mumbai Indians',
+  'Chennai Super Kings',
+  'Royal Challengers Bangalore',
+  'Delhi Capitals',
+  'Kolkata Knight Riders',
+  'Sunrisers Hyderabad',
+  'Rajasthan Royals',
+  'Punjab Kings',
+  'Gujarat Titans',
+  'Lucknow Super Giants',
+];
+
+const stadiums = [
+  'Wankhede Stadium',
+  'MA Chidambaram Stadium',
+  'M. Chinnaswamy Stadium',
+  'Arun Jaitley Stadium',
+  'Eden Gardens',
+  'Rajiv Gandhi International Cricket Stadium',
+  'Sawai Mansingh Stadium',
+  'Punjab Cricket Association IS Bindra Stadium',
+  'Narendra Modi Stadium',
+  'Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium',
+  'Others',
+];
 
 function First({ onSubmit, onBack }) {
-  const transform = {
-    'Chennai Super Kings': 1,
-    'Delhi Capitals': 2,
-    'Kolkata Knight Riders': 3,
-    'Mumbai Indians': 4,
-    'Punjab Kings': 5,
-    'Rajasthan Royals': 6,
-    'Royal Challengers Bangalore': 7,
-    'Sunrisers Hyderabad': 8,
-    'Lucknow Super Giants': 9,
-    'Gujarat Titans': 0,
-  };
-
-  const stadiumTeamMap = {
-    'Wankhede Stadium': 4,
-    'MA Chidambaram Stadium': 1,
-    'M. Chinnaswamy Stadium': 7,
-    'Arun Jaitley Stadium': 2,
-    'Eden Gardens': 3,
-    'Rajiv Gandhi International Cricket Stadium': 8,
-    'Sawai Mansingh Stadium': 6,
-    'Punjab Cricket Association IS Bindra Stadium': 5,
-    'Narendra Modi Stadium': 0,
-    'Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium': 9,
-    'Others': -1,
-  };
-
-  const teams = [
-    'Mumbai Indians',
-    'Chennai Super Kings',
-    'Royal Challengers Bangalore',
-    'Delhi Capitals',
-    'Kolkata Knight Riders',
-    'Sunrisers Hyderabad',
-    'Rajasthan Royals',
-    'Punjab Kings',
-    'Gujarat Titans',
-    'Lucknow Super Giants',
-  ];
-
-  const stadiums = [
-    'Wankhede Stadium',
-    'MA Chidambaram Stadium',
-    'M. Chinnaswamy Stadium',
-    'Arun Jaitley Stadium',
-    'Eden Gardens',
-    'Rajiv Gandhi International Cricket Stadium',
-    'Sawai Mansingh Stadium',
-    'Punjab Cricket Association IS Bindra Stadium',
-    'Narendra Modi Stadium',
-    'Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium',
-    'Others',
-  ];
-
   const [selectedTeams, setSelectedTeams] = useState({
     batting: '',
     bowling: '',
@@ -150,8 +160,20 @@ function First({ onSubmit, onBack }) {
 
   if (formSubmitted && predictedScore !== null) {
     return (
-      <div>
-        <h3 className='prediction'> Predicted 1st Innings Score is: {predictedScore} to {predictedScore + 7}</h3>
+      <div className='prediction-container'>
+        <h3 className='prediction'>
+          Predicted 1st Innings Score is: {predictedScore} to {predictedScore + 7}
+        </h3>
+        <div className="team-logos">
+          <div className='team-logo'>
+            <img src={teamLogos[selectedTeams.batting]} alt={selectedTeams.batting} />
+            <p>{selectedTeams.batting}</p>
+          </div>
+          <div className='team-logo'>
+            <img src={teamLogos[selectedTeams.bowling]} alt={selectedTeams.bowling}/>
+            <p>{selectedTeams.bowling}</p>
+          </div>
+        </div>
         <button onClick={handleReset}>Go Back</button>
       </div>
     );
@@ -242,17 +264,15 @@ function First({ onSubmit, onBack }) {
         </div>
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Predicting...' : 'Predict 1st Innings Score'}
+          {loading ? 'Predicting...' : 'Predict'}
         </button>
-        <button type="button" onClick={handleReset}>
-          Reset
-        </button>
-        <button type="button" onClick={onBack}>
-          Back
-        </button>
-      </form>
 
-      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+        <button type="button" onClick={handleReset}>Reset</button>
+
+        <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue' }}>Back</button>
+
+        {errorMessage && <p className="error">{errorMessage}</p>}
+      </form>
     </div>
   );
 }

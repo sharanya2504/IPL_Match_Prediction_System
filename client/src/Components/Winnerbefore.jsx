@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './WinnerBefore.css';
 
+// Teams and Venues
 const iplTeams = [
   "Mumbai Indians", "Chennai Super Kings", "Royal Challengers Bangalore",
   "Kolkata Knight Riders", "Delhi Capitals", "Punjab Kings",
@@ -14,6 +15,31 @@ const venues = [
   "Punjab Cricket Association Stadium", "Sawai Mansingh Stadium",
   "Rajiv Gandhi International Stadium", "DY Patil Stadium", "Other"
 ];
+
+// Team Logos (importing images from the correct path)
+import miLogo from '../logos/mi.png';
+import cskLogo from '../logos/csk.png';
+import rcbLogo from '../logos/rcb.png';
+import kkrLogo from '../logos/kkr.png';
+import dcLogo from '../logos/dc.png';
+import pbksLogo from '../logos/pbks.png';
+import rrLogo from '../logos/rr.png';
+import srhLogo from '../logos/srh.png';
+import lsgLogo from '../logos/lsg.png';
+import gtLogo from '../logos/gt.png';
+
+const teamLogos = {
+  "Mumbai Indians": miLogo,
+  "Chennai Super Kings": cskLogo,
+  "Royal Challengers Bangalore": rcbLogo,
+  "Kolkata Knight Riders": kkrLogo,
+  "Delhi Capitals": dcLogo,
+  "Punjab Kings": pbksLogo,
+  "Rajasthan Royals": rrLogo,
+  "Sunrisers Hyderabad": srhLogo,
+  "Lucknow Super Giants": lsgLogo,
+  "Gujarat Titans": gtLogo,
+};
 
 function WinnerBefore({ onSubmit, onBack }) {
   const [formData, setFormData] = useState({
@@ -159,10 +185,25 @@ function WinnerBefore({ onSubmit, onBack }) {
       )}
 
       {prediction && (
-        <div>
+        <div className='prediction-container'>
           <h3 className='prediction'>Prediction Result:</h3>
           <p className='prediction'>{`Predicted Winner: ${prediction}`}</p>
-          <button type="button" onClick={handleReset}>Back</button>
+          <div className="team-logos">
+            <div className="team-logo">
+              <h4 className='team1'>Team 1: {formData.team1}</h4>
+              <img src={teamLogos[formData.team1]} alt={formData.team1} / >
+            </div>
+            <div className="team-logo">
+              <h4 className='team2'>Team 2: {formData.team2}</h4>
+              <img src={teamLogos[formData.team2]} alt={formData.team2} />
+            </div>
+            <div className="winner-logo">
+              <h4 className='winner'>Predicted Winner: {prediction}</h4>
+              <img src={teamLogos[prediction]} alt={prediction} />
+            </div>
+          </div>
+
+          <button type="button" onClick={handleReset}>Reset</button>
         </div>
       )}
 

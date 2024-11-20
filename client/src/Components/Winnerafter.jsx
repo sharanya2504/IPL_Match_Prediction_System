@@ -1,5 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
+// Import team logos
+import miLogo from '../logos/mi.png';
+import cskLogo from '../logos/csk.png';
+import rcbLogo from '../logos/rcb.png';
+import kkrLogo from '../logos/kkr.png';
+import dcLogo from '../logos/dc.png';
+import pbksLogo from '../logos/pbks.png';
+import rrLogo from '../logos/rr.png';
+import srhLogo from '../logos/srh.png';
+import lsgLogo from '../logos/lsg.png';
+import gtLogo from '../logos/gt.png';
+
+const teamLogos = {
+  "Mumbai Indians": miLogo,
+  "Chennai Super Kings": cskLogo,
+  "Royal Challengers Bangalore": rcbLogo,
+  "Kolkata Knight Riders": kkrLogo,
+  "Delhi Capitals": dcLogo,
+  "Punjab Kings": pbksLogo,
+  "Rajasthan Royals": rrLogo,
+  "Sunrisers Hyderabad": srhLogo,
+  "Lucknow Super Giants": lsgLogo,
+  "Gujarat Titans": gtLogo,
+};
+
 const allTeams = [
   "Mumbai Indians", "Chennai Super Kings", "Royal Challengers Bangalore",
   "Kolkata Knight Riders", "Delhi Capitals", "Punjab Kings",
@@ -13,28 +38,6 @@ const allVenues = [
   "Punjab Cricket Association Stadium", "Sawai Mansingh Stadium",
   "Rajiv Gandhi International Stadium", "DY Patil Stadium", "Other"
 ];
-
-const fetchlogo = async (teamName, setLogo) => {
-  try {
-    const response = await fetch('http://localhost:3000/api/logo/findlogo', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        teamname: teamName
-      })
-    });
-    const data = await response.json();
-    if (response.ok) {
-      setLogo(data.avatarUrl);
-    } else {
-      console.error("Error fetching logo:", data);
-    }
-  } catch (err) {
-    console.error("Fetch error:", err);
-  }
-};
 
 const WinnerAfter = ({ onSubmit, onBack }) => {
   const [formData, setFormData] = useState({
@@ -56,8 +59,12 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if (formData.battingTeam) fetchlogo(formData.battingTeam, setBattingLogo);
-    if (formData.bowlingTeam) fetchlogo(formData.bowlingTeam, setBowlingLogo);
+    if (formData.battingTeam) {
+      setBattingLogo(teamLogos[formData.battingTeam]);
+    }
+    if (formData.bowlingTeam) {
+      setBowlingLogo(teamLogos[formData.bowlingTeam]);
+    }
   }, [formData.battingTeam, formData.bowlingTeam]);
 
   const handleChange = (e) => {
@@ -101,7 +108,7 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
       setSubmitted(true);
 
       if (result.predicted_team) {
-        fetchlogo(result.predicted_team, setWinningLogo);
+        setWinningLogo(teamLogos[result.predicted_team]);
       }
     } catch (error) {
       setError("Failed to get prediction, please try again.");
@@ -130,8 +137,8 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
   return (
     <div>
       {!submitted ? (
-        <form onSubmit={handleSubmit} className='form'>
-          <h2 className='Main'>Winner Prediction After Inning</h2>
+        <form onSubmit={handleSubmit} className="form">
+          <h2 className="Main">Winner Prediction After Inning</h2>
 
           {error && <div className="error-message" style={{ color: "red" }}>{error}</div>}
 
@@ -227,25 +234,21 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
       ) : (
         <div style={{ marginTop: '20px' }}>
           {predictionResult && (
-            <div className='dis'>
-              <div className='outdisplay'>
-                <div className='logos'>
-                  <div className='logodis'>
-                    {battingLogo && <img src={battingLogo} alt='Batting Team Logo' className='log' />}
-                    <h3 className='blog'>{formData.battingTeam}</h3>
-                  </div>
-                  <div className='logodis'>
-                    {bowlingLogo && <img src={bowlingLogo} alt='Bowling Team Logo' className='log' />}
-                    <h3 className='blog'>{formData.bowlingTeam}</h3>
-                  </div>
+            <div className="prediction-container">
+              <div className="team-logos">
+                <div className="team-logo">
+                  {battingLogo && <img src={battingLogo} alt="Batting Team Logo" />}
+                  <h3 className="team1">{formData.battingTeam}</h3>
                 </div>
-                <div className='win'>
-                  <h1>Winner is {predictionResult.predicted_team}</h1>
-                  <div className='logodis'>
-                    {winningLogo && <img src={winningLogo} alt='Winning Team Logo' className='winnerlog' />}
-                    <h3 className='blog'>{predictionResult.predicted_team}</h3>
-                  </div>
+                <div className="team-logo">
+                  {bowlingLogo && <img src={bowlingLogo} alt="Bowling Team Logo" />}
+                  <h3 className="team2">{formData.bowlingTeam}</h3>
                 </div>
+              </div>
+              <div className="winner-logo">
+                <h1>Winner is {predictionResult.predicted_team}</h1>
+                {winningLogo && <img src={winningLogo} alt="Winning Team Logo" className="winner-logo" />}
+                <h3 className="winner">{predictionResult.predicted_team}</h3>
               </div>
               <button onClick={handleGoBack}>Go Back</button>
             </div>

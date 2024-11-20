@@ -1,4 +1,27 @@
 import React, { useState } from 'react';
+import miLogo from '../logos/mi.png';
+import cskLogo from '../logos/csk.png';
+import rcbLogo from '../logos/rcb.png';
+import kkrLogo from '../logos/kkr.png';
+import dcLogo from '../logos/dc.png';
+import pbksLogo from '../logos/pbks.png';
+import rrLogo from '../logos/rr.png';
+import srhLogo from '../logos/srh.png';
+import lsgLogo from '../logos/lsg.png';
+import gtLogo from '../logos/gt.png';
+
+const teamLogos = {
+  'Mumbai Indians': miLogo,
+  'Chennai Super Kings': cskLogo,
+  'Royal Challengers Bangalore': rcbLogo,
+  'Kolkata Knight Riders': kkrLogo,
+  'Delhi Capitals': dcLogo,
+  'Punjab Kings': pbksLogo,
+  'Rajasthan Royals': rrLogo,
+  'Sunrisers Hyderabad': srhLogo,
+  'Lucknow Super Giants': lsgLogo,
+  'Gujarat Titans': gtLogo,
+};
 
 const transform = {
   'Chennai Super Kings': 1,
@@ -145,10 +168,26 @@ function Second({ onBack }) {
     setFormSubmitted(false);
   };
 
+  const renderTeamLogo = (team) => {
+    return teamLogos[team] ? <img src={teamLogos[team]} alt={team} /> : null;
+  };
+
   if (formSubmitted) {
     return (
-      <div>
-        <h3 className='prediction'>Predicted Second Innings Score: {prediction} to {prediction + 4}</h3>
+      <div className='prediction-container'>
+        <h3 className='prediction'>
+          Predicted Second Innings Score: {prediction} to {prediction + 4}
+        </h3>
+        <div className='team-logos'>
+        <div className='team-logo'>
+          <h4>Batting Team:</h4>
+          <div>{renderTeamLogo(selectedTeams.batting)} {selectedTeams.batting}</div>
+        </div>
+        <div className='team-logo'>
+          <h4>Bowling Team:</h4>
+          <div>{renderTeamLogo(selectedTeams.bowling)} {selectedTeams.bowling}</div>
+        </div>
+        </div>
         <button type="button" onClick={handleReset}>
           Back
         </button>
@@ -212,9 +251,7 @@ function Second({ onBack }) {
             value={inningsData.firstInningsScore}
             onChange={handleInningsDataChange}
           />
-          {formErrors.firstInningsScore && (
-            <span style={{ color: 'red' }}>{formErrors.firstInningsScore}</span>
-          )}
+          {formErrors.firstInningsScore && <span style={{ color: 'red' }}>{formErrors.firstInningsScore}</span>}
         </div>
         <div>
           <label>Over:</label>
@@ -246,14 +283,17 @@ function Second({ onBack }) {
           />
           {formErrors.wickets && <span style={{ color: 'red' }}>{formErrors.wickets}</span>}
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Predicting...' : 'Predict Second Innings Score'}
-        </button>
-        <button type="button" onClick={onBack}>
-          Back
-        </button>
+        <div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Predicting...' : 'Submit'}
+          </button>
+
+          <button type="button" onClick={handleReset}>Reset</button>
+
+          <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue' }}>Back</button>
+        </div>
       </form>
-      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 }
