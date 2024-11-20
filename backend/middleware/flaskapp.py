@@ -157,7 +157,6 @@ def preprocess_first_score(form_data):
         inputs_first_scaled = inputs_first
 
     return inputs_first_scaled
-
 def preprocess_sec_innings(form_data):
     batting = encode_team(form_data["battingTeam"])
     bowling = encode_team(form_data["bowlingTeam"])
@@ -167,17 +166,22 @@ def preprocess_sec_innings(form_data):
     currentScore = form_data["currentScore"]
     wickets = form_data["wicketsFallen"]
     venue_data = df_second[df_second["venue"] == venue]
+    
     if venue_data.empty:
         return None
+    
     t1w = venue_data["team1_wins"].iloc[0]
     t2w = venue_data["team2_wins"].iloc[0]
     a1 = venue_data["a1"].iloc[0]
     a2 = venue_data["a2"].iloc[0]
     humid = venue_data["humid"].iloc[0]
     bs = venue_data["boundary_size"].iloc[0]
-    inputs_sec = np.array([[batting,bowling,venue,t1w, t2w, a1, humid, bs, a2,over,currentScore,wickets,first]])
-    inputs_sec = scaler_x_sec.transform(inputs_sec)
-    return inputs_sec
+    
+    inputs_sec = np.array([[batting, bowling, venue, t1w, t2w, a1, humid, bs, a2, over, currentScore, wickets, first]])
+    inputs_sec_scaled = scaler_x_sec.transform(inputs_sec)
+    inputs_sec_scaled = inputs_sec_scaled.reshape((inputs_sec_scaled.shape[0], 1, inputs_sec_scaled.shape[1]))
+    
+    return inputs_sec_scaled
 
 
 @app.route('/predict/winnerBefore', methods=['POST'])

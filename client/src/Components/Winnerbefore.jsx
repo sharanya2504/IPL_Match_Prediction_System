@@ -26,7 +26,7 @@ function WinnerBefore({ onSubmit, onBack }) {
 
   const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,31 +48,31 @@ function WinnerBefore({ onSubmit, onBack }) {
     setLoading(true);
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/predict/winnerBefore', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),     
-        });
+      const response = await fetch('http://127.0.0.1:5000/predict/winnerBefore', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-        if (response.ok) {
-            const predictionData = await response.json();
-            if (predictionData.predicted_team) {
-                setPrediction(predictionData.predicted_team);
-            } else {
-                setError('Prediction data is not available.');
-            }
+      if (response.ok) {
+        const predictionData = await response.json();
+        if (predictionData.predicted_team) {
+          setPrediction(predictionData.predicted_team);
         } else {
-            const errorText = await response.text();
-            console.error('Response Error:', errorText);
-            throw new Error('Failed to fetch prediction from backend');
+          setError('Prediction data is not available.');
         }
+      } else {
+        const errorText = await response.text();
+        console.error('Response Error:', errorText);
+        throw new Error('Failed to fetch prediction from backend');
+      }
     } catch (error) {
-        console.error('Error:', error);
-        setError('An error occurred. Please try again.');
+      console.error('Error:', error);
+      setError('An error occurred. Please try again.');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -90,75 +90,79 @@ function WinnerBefore({ onSubmit, onBack }) {
 
   return (
     <div>
-      <h2 className='Main'>Winner Prediction Before Match</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Team 1:
-          <select name="team1" value={formData.team1} onChange={handleChange}>
-            <option value="">Select Team 1</option>
-            {iplTeams.map((team) => (
-              <option key={team} value={team}>
-                {team}
-              </option>
-            ))}
-          </select>
-        </label>
+      <h2 className="Main">Winner Prediction Before Match</h2>
 
-        <label>
-          Team 2:
-          <select name="team2" value={formData.team2} onChange={handleChange} disabled={!formData.team1}>
-            <option value="">Select Team 2</option>
-            {iplTeams
-              .filter((team) => team !== formData.team1)
-              .map((team) => (
+      {!prediction && !error && (
+        <form onSubmit={handleSubmit}>
+          <label>
+            Team 1:
+            <select name="team1" value={formData.team1} onChange={handleChange}>
+              <option value="">Select Team 1</option>
+              {iplTeams.map((team) => (
                 <option key={team} value={team}>
                   {team}
                 </option>
               ))}
-          </select>
-        </label>
+            </select>
+          </label>
 
-        <label>
-          Venue:
-          <select name="venue" value={formData.venue} onChange={handleChange}>
-            <option value="">Select Venue</option>
-            {venues.map((venue) => (
-              <option key={venue} value={venue}>
-                {venue}
-              </option>
-            ))}
-          </select>
-        </label>
+          <label>
+            Team 2:
+            <select name="team2" value={formData.team2} onChange={handleChange} disabled={!formData.team1}>
+              <option value="">Select Team 2</option>
+              {iplTeams
+                .filter((team) => team !== formData.team1)
+                .map((team) => (
+                  <option key={team} value={team}>
+                    {team}
+                  </option>
+                ))}
+            </select>
+          </label>
 
-        <label>
-          Toss Winner:
-          <select name="tossWinner" value={formData.tossWinner} onChange={handleChange} disabled={!formData.team1 || !formData.team2}>
-            <option value="">Select Toss Winner</option>
-            {formData.team1 && <option value={formData.team1}>{formData.team1}</option>}
-            {formData.team2 && <option value={formData.team2}>{formData.team2}</option>}
-          </select>
-        </label>
+          <label>
+            Venue:
+            <select name="venue" value={formData.venue} onChange={handleChange}>
+              <option value="">Select Venue</option>
+              {venues.map((venue) => (
+                <option key={venue} value={venue}>
+                  {venue}
+                </option>
+              ))}
+            </select>
+          </label>
 
-        <label>
-          Toss Decision:
-          <select name="tossDecision" value={formData.tossDecision} onChange={handleChange}>
-            <option value="">Select Toss Decision</option>
-            <option value="bat">Bat</option>
-            <option value="bowl">Bowl</option>
-          </select>
-        </label>
+          <label>
+            Toss Winner:
+            <select name="tossWinner" value={formData.tossWinner} onChange={handleChange} disabled={!formData.team1 || !formData.team2}>
+              <option value="">Select Toss Winner</option>
+              {formData.team1 && <option value={formData.team1}>{formData.team1}</option>}
+              {formData.team2 && <option value={formData.team2}>{formData.team2}</option>}
+            </select>
+          </label>
 
-        <div>
-          <button type="submit" disabled={loading}>{loading ? 'Predicting...' : 'Submit'}</button>
-          <button type="button" onClick={handleReset}>Reset</button>
-          <button type="button" onClick={onBack}>Back</button>
-        </div>
-      </form>
+          <label>
+            Toss Decision:
+            <select name="tossDecision" value={formData.tossDecision} onChange={handleChange}>
+              <option value="">Select Toss Decision</option>
+              <option value="bat">Bat</option>
+              <option value="bowl">Bowl</option>
+            </select>
+          </label>
+
+          <div>
+            <button type="submit" disabled={loading}>{loading ? 'Predicting...' : 'Submit'}</button>
+            <button type="button" onClick={handleReset}>Reset</button>
+            <button type="button" onClick={onBack}>Back</button>
+          </div>
+        </form>
+      )}
 
       {prediction && (
         <div>
-          <h3>Prediction Result:</h3>
-          <p>{`Predicted Winner: ${prediction}`}</p>
+          <h3 className='prediction'>Prediction Result:</h3>
+          <p className='prediction'>{`Predicted Winner: ${prediction}`}</p>
+          <button type="button" onClick={handleReset}>Back</button>
         </div>
       )}
 
@@ -166,6 +170,7 @@ function WinnerBefore({ onSubmit, onBack }) {
         <div>
           <h3>Error:</h3>
           <p>{error}</p>
+          <button type="button" onClick={handleReset}>Reset</button>
         </div>
       )}
     </div>

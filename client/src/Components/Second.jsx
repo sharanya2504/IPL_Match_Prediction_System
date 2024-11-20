@@ -54,7 +54,7 @@ const stadiums = [
   'Others',
 ];
 
-function Second({ onSubmit, onBack }) {
+function Second({ onBack }) {
   const [selectedTeams, setSelectedTeams] = useState({ batting: '', bowling: '' });
   const [venue, setVenue] = useState('');
   const [inningsData, setInningsData] = useState({
@@ -67,6 +67,7 @@ function Second({ onSubmit, onBack }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleTeamChange = (inningType, team) => {
     setSelectedTeams((prevState) => ({ ...prevState, [inningType]: team }));
@@ -94,11 +95,11 @@ function Second({ onSubmit, onBack }) {
 
   const handleInningsSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!validateForm()) {
       return;
     }
-  
+
     const predictionData = {
       battingTeam: transform[selectedTeams.batting] || '',
       bowlingTeam: transform[selectedTeams.bowling] || '',
@@ -108,9 +109,7 @@ function Second({ onSubmit, onBack }) {
       currentScore: inningsData.currentScore,
       wicketsFallen: inningsData.wickets,
     };
-  
-    console.log("Submitting prediction data:", predictionData);
-  
+
     try {
       setLoading(true);
       const response = await fetch('http://localhost:5000/predict/secondScore', {
@@ -120,22 +119,21 @@ function Second({ onSubmit, onBack }) {
         },
         body: JSON.stringify(predictionData),
       });
-  
+
       const responseData = await response.json();
-      console.log("Response from backend:", responseData);
       if (!response.ok) {
         throw new Error(responseData.error || 'Failed to predict second innings score');
       }
-  
-      setPrediction(responseData.predicted_second_innings_score); 
+
+      setPrediction(responseData.predicted_second_innings_score);
       setErrorMessage('');
+      setFormSubmitted(true); // Mark form as submitted
     } catch (error) {
       setErrorMessage('Error sending data to Flask: ' + error.message);
     } finally {
       setLoading(false);
     }
   };
-  
 
   const handleReset = () => {
     setSelectedTeams({ batting: '', bowling: '' });
@@ -144,11 +142,23 @@ function Second({ onSubmit, onBack }) {
     setPrediction(null);
     setErrorMessage('');
     setFormErrors({});
+    setFormSubmitted(false);
   };
+
+  if (formSubmitted) {
+    return (
+      <div>
+        <h3 className='prediction'>Predicted Second Innings Score: {prediction} to {prediction+4}</h3>
+        <button type="button" onClick={handleReset}>
+          Reset
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h2 className='Main'>Second Innings Score Prediction</h2>
+      <h2 className="Main">Second Innings Score Prediction</h2>
 
       <form onSubmit={handleInningsSubmit}>
         <div>
@@ -166,7 +176,6 @@ function Second({ onSubmit, onBack }) {
           </select>
           {formErrors.batting && <span style={{ color: 'red' }}>{formErrors.batting}</span>}
         </div>
-
         <div>
           <label>Bowling Team:</label>
           <select
@@ -183,7 +192,6 @@ function Second({ onSubmit, onBack }) {
           </select>
           {formErrors.bowling && <span style={{ color: 'red' }}>{formErrors.bowling}</span>}
         </div>
-
         <div>
           <label>Venue:</label>
           <select value={venue} onChange={(e) => handleVenueChange(e.target.value)}>
@@ -196,75 +204,54 @@ function Second({ onSubmit, onBack }) {
           </select>
           {formErrors.venue && <span style={{ color: 'red' }}>{formErrors.venue}</span>}
         </div>
-
         <div>
           <label>First Innings Score:</label>
           <input
             type="number"
             name="firstInningsScore"
-            min="0"
             value={inningsData.firstInningsScore}
             onChange={handleInningsDataChange}
           />
-          {formErrors.firstInningsScore && <span style={{ color: 'red' }}>{formErrors.firstInningsScore}</span>}
+          {formErrors.firstInningsScore && (
+            <span style={{ color: 'red' }}>{formErrors.firstInningsScore}</span>
+          )}
         </div>
-
         <div>
           <label>Over:</label>
           <input
             type="number"
             name="over"
-            min="0"
-            step="0.1"
-            max="20"
             value={inningsData.over}
             onChange={handleInningsDataChange}
           />
           {formErrors.over && <span style={{ color: 'red' }}>{formErrors.over}</span>}
         </div>
-
         <div>
           <label>Current Score:</label>
           <input
             type="number"
             name="currentScore"
-            min="0"
             value={inningsData.currentScore}
             onChange={handleInningsDataChange}
           />
           {formErrors.currentScore && <span style={{ color: 'red' }}>{formErrors.currentScore}</span>}
         </div>
-
         <div>
           <label>Wickets Fallen:</label>
           <input
             type="number"
             name="wickets"
-            min="0"
             value={inningsData.wickets}
             onChange={handleInningsDataChange}
           />
           {formErrors.wickets && <span style={{ color: 'red' }}>{formErrors.wickets}</span>}
         </div>
-
         <button type="submit" disabled={loading}>
           {loading ? 'Loading...' : 'Predict Second Innings Score'}
-        </button>
-        <button type="button" onClick={handleReset}>
-          Reset
-        </button>
-        <button type="button" onClick={onBack}>
-          Back
         </button>
       </form>
 
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-
-      {prediction !== null && prediction !== undefined && (
-        <div>
-          <h3>Predicted Second Innings Score: {prediction}</h3>
-        </div>
-      )}
     </div>
   );
 }

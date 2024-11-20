@@ -67,7 +67,8 @@ function First({ onSubmit, onBack }) {
   });
   const [predictedScore, setPredictedScore] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleReset = () => {
     setSelectedTeams({ batting: '', bowling: '' });
@@ -75,6 +76,7 @@ function First({ onSubmit, onBack }) {
     setInningsData({ over: '', score: '', wickets: '' });
     setPredictedScore(null);
     setErrorMessage('');
+    setFormSubmitted(false);
   };
 
   const handleTeamChange = (inningType, team) => {
@@ -101,9 +103,9 @@ function First({ onSubmit, onBack }) {
 
   const handleInningsSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true); 
+    setLoading(true);
     setErrorMessage('');
-    
+
     try {
       const formData = {
         batting_team: selectedTeams.batting,
@@ -114,7 +116,7 @@ function First({ onSubmit, onBack }) {
         wickets: inningsData.wickets,
       };
 
-      console.log('Form Data:', formData); 
+      console.log('Form Data:', formData);
 
       const response = await fetch('http://localhost:5000/predict/firstScore', {
         method: 'POST',
@@ -134,6 +136,7 @@ function First({ onSubmit, onBack }) {
         throw new Error(data.error);
       } else if (data.predicted_first_innings_score !== undefined) {
         setPredictedScore(data.predicted_first_innings_score);
+        setFormSubmitted(true); // Set formSubmitted to true on success
       } else {
         throw new Error('Prediction failed: Predicted score not found');
       }
@@ -145,9 +148,18 @@ function First({ onSubmit, onBack }) {
     }
   };
 
+  if (formSubmitted && predictedScore !== null) {
+    return (
+      <div>
+        <h3 className='prediction'> Predicted 1st Innings Score is: {predictedScore} to {predictedScore + 7}</h3>
+        <button onClick={handleReset}>Go Back</button>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <h2 className='Main'>First Innings Score Prediction</h2>
+      <h2 className="Main">First Innings Score Prediction</h2>
 
       <form onSubmit={handleInningsSubmit}>
         <div>
@@ -241,12 +253,6 @@ function First({ onSubmit, onBack }) {
       </form>
 
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-
-      {predictedScore !== null && (
-        <div>
-          <h3>Predicted 1st Innings Score is in range of : {predictedScore} to {predictedScore+7} </h3>
-        </div>
-      )}
     </div>
   );
 }
