@@ -127,7 +127,7 @@ function Second({ onBack }) {
 
       setPrediction(responseData.predicted_second_innings_score);
       setErrorMessage('');
-      setFormSubmitted(true); // Mark form as submitted
+      setFormSubmitted(true);
     } catch (error) {
       setErrorMessage('Error sending data to Flask: ' + error.message);
     } finally {
@@ -148,9 +148,9 @@ function Second({ onBack }) {
   if (formSubmitted) {
     return (
       <div>
-        <h3 className='prediction'>Predicted Second Innings Score: {prediction} to {prediction+4}</h3>
+        <h3 className='prediction'>Predicted Second Innings Score: {prediction} to {prediction + 4}</h3>
         <button type="button" onClick={handleReset}>
-          Reset
+          Back
         </button>
       </div>
     );
@@ -247,10 +247,12 @@ function Second({ onBack }) {
           {formErrors.wickets && <span style={{ color: 'red' }}>{formErrors.wickets}</span>}
         </div>
         <button type="submit" disabled={loading}>
-          {loading ? 'Loading...' : 'Predict Second Innings Score'}
+          {loading ? 'Predicting...' : 'Predict Second Innings Score'}
+        </button>
+        <button type="button" onClick={onBack}>
+          Back
         </button>
       </form>
-
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
     </div>
   );
