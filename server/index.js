@@ -29,9 +29,9 @@ app.use(session({
     },
   }));
   
-mongoose.connect("mongodb://localhost:27017/signup")
+// mongoose.connect("mongodb://localhost:27017/signup")
 // mongoose.connect("mongodb+srv://ipl:ipl@cluster0.7kekl.mongodb.net/")
-// mongoose.connect("mongodb+srv://ipl:ipl@cluster0.7kekl.mongodb.net/test?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://ipl:ipl@cluster0.7kekl.mongodb.net/test?retryWrites=true&w=majority")
 
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Failed to connect to MongoDB', err));

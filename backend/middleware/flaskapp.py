@@ -101,7 +101,7 @@ def preprocess_data_before(form_data):
     toss_winner = encode_team(form_data['tossWinner'])
     toss_decision = 1 if form_data['tossDecision'].lower() == 'bat' else 0
     first_avg, second_avg = get_averages(venue)
-    return np.array([team1, team2, venue, toss_winner, toss_decision, first_avg, second_avg]).reshape(1, -1)
+    return np.array([venue,team1, team2, toss_winner, toss_decision, first_avg, second_avg]).reshape(1, -1)
 
 def preprocess_data_after(form_data):
     batting_team = encode_team(form_data['batting_team'])
