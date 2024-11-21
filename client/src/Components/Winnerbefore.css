@@ -4,12 +4,12 @@
   height: 500px;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly darker shadow for contrast */
-  background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
   

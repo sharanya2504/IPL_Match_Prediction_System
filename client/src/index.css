@@ -105,18 +105,18 @@ button {
 }
 
 .prediction-container {
-  background-color: rgba(176, 173, 173, 0.832); /* Semi-transparent background to ensure visibility */
+  background-color: rgba(176, 173, 173, 0.832);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 4px 8px rgb(243, 237, 237); /* Optional: for some subtle shadow around the transparent box */
-  color: white; /* Ensures text remains readable */
+  box-shadow: 0 4px 8px rgb(243, 237, 237);
+  color: white;
 }
 
 .team-logo img, .winner-logo img {
   width: 100%;
   max-width: 150px;
-  border-radius: 10px; /* Optional: rounded corners for the images */
+  border-radius: 10px;
 }
 
 button[type="button"] {
