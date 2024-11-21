@@ -76,7 +76,7 @@ button {
 }
 
 .prediction {
-  color: white;
+  color: black;
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
@@ -105,11 +105,11 @@ button {
 }
 
 .prediction-container {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background to ensure visibility */
+  background-color: rgba(176, 173, 173, 0.832); /* Semi-transparent background to ensure visibility */
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: for some subtle shadow around the transparent box */
+  box-shadow: 0 4px 8px rgb(243, 237, 237); /* Optional: for some subtle shadow around the transparent box */
   color: white; /* Ensures text remains readable */
 }
 
