@@ -179,10 +179,8 @@ function Second({ onBack }) {
           Predicted Second Innings Score: {prediction} to {prediction + 4}
         </h3>
         <div className='team-logos'>
-        <div className='team-logo'>
           <h4>Batting Team:</h4>
           <div>{renderTeamLogo(selectedTeams.batting)} {selectedTeams.batting}</div>
-        </div>
         <div className='team-logo'>
           <h4>Bowling Team:</h4>
           <div>{renderTeamLogo(selectedTeams.bowling)} {selectedTeams.bowling}</div>

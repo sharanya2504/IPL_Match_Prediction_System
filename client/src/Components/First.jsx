@@ -166,11 +166,15 @@ function First({ onSubmit, onBack }) {
         </h3>
         <div className="team-logos">
           <div className='team-logo'>
+          <div className='teamlogo'>
             <img src={teamLogos[selectedTeams.batting]} alt={selectedTeams.batting} />
+            </div>
             <p>{selectedTeams.batting}</p>
           </div>
           <div className='team-logo'>
+          <div className='teamlogo'>
             <img src={teamLogos[selectedTeams.bowling]} alt={selectedTeams.bowling}/>
+            </div>
             <p>{selectedTeams.bowling}</p>
           </div>
         </div>

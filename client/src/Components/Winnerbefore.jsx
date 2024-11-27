@@ -191,15 +191,21 @@ function WinnerBefore({ onSubmit, onBack }) {
           <div className="team-logos">
             <div className="team-logo">
               <h4 className='team1'>Team 1: {formData.team1}</h4>
-              <img src={teamLogos[formData.team1]} alt={formData.team1} / >
+              <div className='teamlogo'>
+              <img src={teamLogos[formData.team1]} alt={formData.team1} className='teamlogo' / >
+              </div>
             </div>
             <div className="team-logo">
               <h4 className='team2'>Team 2: {formData.team2}</h4>
-              <img src={teamLogos[formData.team2]} alt={formData.team2} />
+              <div className='teamlogo'>
+              <img src={teamLogos[formData.team2]} alt={formData.team2} className='teamlogo' />
+              </div>
             </div>
             <div className="winner-logo">
               <h4 className='winner'>Predicted Winner: {prediction}</h4>
-              <img src={teamLogos[prediction]} alt={prediction} />
+              <div className='teamlogo'>
+              <img src={teamLogos[prediction]} alt={prediction}/>
+              </div>
             </div>
           </div>
 

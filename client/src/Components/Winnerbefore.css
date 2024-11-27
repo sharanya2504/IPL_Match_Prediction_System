@@ -75,3 +75,7 @@
     background-color: #1e88e5;
   }
 
+.team-logo>img{
+    height: 150px;
+    /* width: 100px; */
+}

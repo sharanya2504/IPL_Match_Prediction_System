@@ -237,17 +237,23 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
             <div className="prediction-container">
               <div className="team-logos">
                 <div className="team-logo">
+                <div className="teamlogo">
                   {battingLogo && <img src={battingLogo} alt="Batting Team Logo" />}
+                  </div>
                   <h3 className="team1">{formData.battingTeam}</h3>
                 </div>
                 <div className="team-logo">
+                  <div className='teamlogo'>
                   {bowlingLogo && <img src={bowlingLogo} alt="Bowling Team Logo" />}
+                  </div>
                   <h3 className="team2">{formData.bowlingTeam}</h3>
                 </div>
               </div>
               <div className="winner-logo">
+              <div className='teamlogo'>
                 <h1>Winner is {predictionResult.predicted_team}</h1>
                 {winningLogo && <img src={winningLogo} alt="Winning Team Logo" className="winner-logo" />}
+                </div>
                 <h3 className="winner">{predictionResult.predicted_team}</h3>
               </div>
               <button onClick={handleGoBack}>Go Back</button>
