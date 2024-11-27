@@ -43,7 +43,7 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
         <div className="home-text">
           <h1 className="title">Welcome to IPL Match Predictor!</h1>
           <p className="subtitle">
-            Your ultimate platform for predicting IPL match outcomes, scores, and more.
+            Your ultimate platform for predicting IPL match outcomes, scores.
           </p>
           <h2 className="features-heading">Features:</h2>
           <ul className="features-list">

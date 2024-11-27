@@ -12,7 +12,7 @@ export const Logout = ({ setIsLoggedIn }) => {
             .then(response => {
                 if (response.status === 200) {
                     setIsLoggedIn(false);
-                    navigate("/login");
+                    navigate("../");
                 }
             })
             .catch(error => {
