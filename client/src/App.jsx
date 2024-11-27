@@ -41,7 +41,7 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
       {/* Conditionally render the home text */}
       {!isLoggedIn && !isAuthPage && (
         <div className="home-text">
-          <h1 className="title">Welcome to IPL Match Predictor!</h1>
+          <h1 className="title">Welcome to PrediX!</h1>
           <p className="subtitle">
             Your ultimate platform for predicting IPL match outcomes, scores.
           </p>
@@ -68,7 +68,7 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
           <h2 className="why-choose-us-heading">Why Choose Us?</h2>
           <ul className="why-choose-us-list">
             <li>
-              <strong>Data-Driven Insights:</strong> We analyze player performance, team statistics, and
+              <strong>Data-Driven Insights:</strong> We analyze team performance, team statistics, and
               match conditions.
             </li>
             <li>
