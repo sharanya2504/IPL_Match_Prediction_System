@@ -132,3 +132,89 @@ button[type="submit"]:hover {
   background-color: #45a049;
 }
 
+
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* App Container */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Navbar Styling (if not already defined) */
+.navbar {
+  background-color: #007bff;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Home Text Section */
+.home-text {
+  margin: 2rem auto;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
+  border-radius: 8px;
+  padding: 2rem;
+  color: #333;
+}
+
+.home-text .title {
+  font-size: 2.5rem;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.home-text .subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.home-text h2 {
+  font-size: 1.5rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.features-list,
+.why-choose-us-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.features-list li,
+.why-choose-us-list li {
+  margin-bottom: 0.5rem;
+}
+
+.home-text p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.home-text strong {
+  color: #007bff;
+}

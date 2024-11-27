@@ -29,7 +29,5 @@ export const Home = () => {
     if (loading) {
         return <center><h1>Loading...</h1></center>;
     }
-
-    // Render AfterHome component after successful login
     return <AfterHome user={user} />;
 };
