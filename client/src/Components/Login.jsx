@@ -60,7 +60,7 @@ export const Login = ({ setIsLoggedIn, isLoggedIn }) => {
                 <form onSubmit={handleLogin}>
                     <TextField onChange={(e) => setEmail(e.target.value)} required style={row} sx={{label: { fontWeight: '700', fontSize:"1.3rem" }}} fullWidth label="Email" variant="outlined" type="email" placeholder="Enter Email" name="email" ></TextField>              
                     <TextField onChange={(e) => setPassword(e.target.value)} required style={row} sx={{label: { fontWeight: '700', fontSize:"1.3rem" }}} fullWidth label="Password" variant="outlined" type="password" placeholder="Enter Password" name="password"></TextField>
-                    <Button style={btnStyle} variant="contained" type="submit">Login</Button>                    
+                    <Button style={btnStyle} variant="contained" type="submit" className="login">Login</Button>                    
                 </form>
 
                 <p>Don't have an account? <Link to="/signup">SignUp</Link></p>

@@ -75,6 +75,12 @@
     background-color: #1e88e5;
   }
 
-.team-logo>img{
-    height: 150px;
+.teamlogo>img{
+    height: 15rem;
+    max-width: 15rem;
+
+}
+
+.login{
+  background-color: rgba(255, 255, 255, 0.8);
 }

@@ -1,4 +1,4 @@
-body {
+ body {
   background-image: url('assets/background.png');
   background-size: cover;
   background-position: center; 
@@ -120,20 +120,19 @@ button {
 }
 
 button[type="button"] {
-  background-color: #f44336;
+  /* background-color: #f44336; */
   color: white;
 }
 
 button[type="button"]:hover {
-  background-color: #e53935;
+  /* background-color: #e53935; */
 }
 
 button[type="submit"]:hover {
-  background-color: #45a049;
+  /* background-color: #45a049; */
 }
 
 
-/* General Styling */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -141,15 +140,13 @@ body {
   background-color: #f9f9f9;
   color: #333;
 }
-
-/* App Container */
 .app {
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
-
-/* Navbar Styling (if not already defined) */
 .navbar {
   background-color: #007bff;
   padding: 1rem;
@@ -168,13 +165,13 @@ body {
   text-decoration: underline;
 }
 
-/* Home Text Section */
 .home-text {
-  margin: 2rem auto;
-  max-width: 800px;
-  background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
+  margin: auto;
+  max-width: 1000px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
   padding: 2rem;
+  margin-top: 1.5rem;
   color: #333;
 }
 
@@ -188,20 +185,20 @@ body {
 .home-text .subtitle {
   font-size: 1.2rem;
   text-align: center;
-  margin-bottom: 1.5rem;
+ margin-bottom: 1.5rem;
 }
 
 .home-text h2 {
   font-size: 1.5rem;
   color: #444;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 .features-list,
 .why-choose-us-list {
   list-style-type: disc;
   padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
+   margin-bottom: 1.5rem; 
 }
 
 .features-list li,
@@ -212,9 +209,25 @@ body {
 .home-text p {
   font-size: 1rem;
   line-height: 1.5;
-  margin-bottom: 1rem;
+ margin-bottom: 1rem;
 }
 
 .home-text strong {
   color: #007bff;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 200%;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  border-top: 1px solid #dee2e6;
+  font-size: 10px;
+  color: #6c757d;
+}
+
+
+.login{
+  background-color: rgba(255, 255, 255, 0.8);
 }
