@@ -174,22 +174,31 @@ function Second({ onBack }) {
 
   if (formSubmitted) {
     return (
-      <div className='prediction-container'>
-        <h3 className='prediction'>
-          Predicted Second Innings Score: {prediction} to {prediction + 4}
-        </h3>
-        <div className='team-logos'>
-          <h4>Batting Team:</h4>
-          <div>{renderTeamLogo(selectedTeams.batting)} {selectedTeams.batting}</div>
-        <div className='team-logo'>
-          <h4>Bowling Team:</h4>
-          <div>{renderTeamLogo(selectedTeams.bowling)} {selectedTeams.bowling}</div>
-        </div>
-        </div>
-        <button type="button" onClick={handleReset}>
-          Back
-        </button>
+<div className="prediction-container">
+  <h3 className="prediction">
+    Predicted Second Innings Score: {prediction} to {prediction + 4}
+  </h3>
+  <div className="team-logos">
+    <div className="team-logo">
+      <h4>Batting Team:</h4>
+      <div className="team-info">
+        <div>{renderTeamLogo(selectedTeams.batting)}</div>
+        <div>{selectedTeams.batting}</div>
       </div>
+    </div>
+    <div className="team-logo">
+      <h4>Bowling Team:</h4>
+      <div className="team-info">
+        <div>{renderTeamLogo(selectedTeams.bowling)}</div>
+        <div>{selectedTeams.bowling}</div>
+      </div>
+    </div>
+  </div>
+  <button type="button" onClick={handleReset}>
+    Back
+  </button>
+</div>
+
     );
   }
 
@@ -288,7 +297,7 @@ function Second({ onBack }) {
 
           <button type="button" onClick={handleReset}>Reset</button>
 
-          <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue' }}>Back</button>
+          <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue',  color:'white'}}>Back</button>
         </div>
       </form>
       {errorMessage && <p>{errorMessage}</p>}

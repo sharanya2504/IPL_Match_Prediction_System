@@ -21,8 +21,20 @@ export const Logout = ({ setIsLoggedIn }) => {
     };
     const button={marginRight:'20px', fontSize:'1.2rem', fontWeight:'700', padding:'0.3rem 1.4rem'}
     return (
-        <Button variant="contained" color="error" style={button} onClick={handleLogout}>
-            Logout
-        </Button>
+<Button 
+    variant="contained" 
+    color="error" 
+    style={{
+        ...button, 
+        background: "rgba(255, 255, 255, 0.2)", // Transparent background
+        backdropFilter: "blur(5px)", // Blur effect on the background
+        border: "1px solid rgba(255, 255, 255, 0.3)", // Optional border for emphasis
+        color: "white", // Text color
+    }} 
+    onClick={handleLogout}
+>
+    Logout
+</Button>
+
   )
 }
