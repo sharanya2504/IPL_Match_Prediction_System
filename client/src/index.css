@@ -12,9 +12,9 @@ body {
   overflow: hidden;
 }
 
-p {
+/* p {
   font-size: large;
-}
+} */
 
 button {
   border-radius: 4px;
@@ -36,9 +36,6 @@ button {
   margin-left: 655px;
 }
 
-button {
-  margin-left: 10px;
-}
 
 .winp, .scop, .winner-options, .score-option {
   margin: 0 auto;
@@ -119,21 +116,6 @@ button {
   border-radius: 10px;
 }
 
-button[type="button"] {
-  /* background-color: #f44336; */
-  color: white;
-}
-
-button[type="button"]:hover {
-  /* background-color: #e53935; */
-}
-
-button[type="submit"]:hover {
-  /* background-color: #45a049; */
-}
-
-
-
 
 body {
   font-family: Arial, sans-serif;
@@ -149,13 +131,13 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-.navbar {
+/* .navbar {
   background-color: #007bff;
   padding: 1rem;
   color: white;
   text-align: center;
   font-size: 1.2rem;
-}
+} */
 
 .navbar a {
   color: white;

@@ -13,13 +13,41 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
                     </Typography>
                     {!isLoggedIn ? (
                         <>
-                            <Button variant="contained" style={button} color="error" component={Link} to="/login">
-                                Login 
-                            </Button>
+<Button 
+    variant="contained" 
+    style={{
+        ...button, 
+        background: "rgba(255, 255, 255, 0.2)", // Transparent background
+        backdropFilter: "blur(5px)", // Blur effect on the background
+        border: "1px solid rgba(255, 255, 255, 0.3)", // Optional border for emphasis
+        color: "white", // Text color
+    }} 
+    color="error" 
+    component={Link} 
+    to="/login"
+>
+    Login
+</Button>
 
-                            <Button variant="contained" style={button} color="success" component={Link} to="/signup">
-                                Signup
-                            </Button>
+
+
+
+<Button 
+    variant="contained" 
+    style={{
+        ...button, 
+        background: "rgba(255, 255, 255, 0.2)", // Transparent background
+        backdropFilter: "blur(0px)", // Blur effect on the background
+        border: "1px solid rgba(255, 255, 255, 0.3)", // Optional border for emphasis
+        color: "white", // Text color
+    }} 
+    color="success" 
+    component={Link} 
+    to="/signup"
+>
+    Signup
+</Button>
+
                         </>
                     ) : (
                         <Logout setIsLoggedIn={setIsLoggedIn} />
