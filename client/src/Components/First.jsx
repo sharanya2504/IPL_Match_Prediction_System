@@ -273,7 +273,7 @@ function First({ onSubmit, onBack }) {
 
         <button type="button" onClick={handleReset}>Reset</button>
 
-        <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue' }}>Back</button>
+        <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue', color:"white"}}>Back</button>
 
         {errorMessage && <p className="error">{errorMessage}</p>}
       </form>
