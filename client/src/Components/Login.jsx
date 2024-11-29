@@ -48,11 +48,11 @@ export const Login = ({ setIsLoggedIn, isLoggedIn }) => {
     
     <Grid align="center" className="wrapper">
         <Paper style={paperStyle} sx={{width: {
-            xs: '80vw',     // 0
-            sm: '50vw',     // 600                   
-            md: '40vw',     // 900
-            lg: '30vw',     // 1200
-            xl: '20vw',     // 1536 
+            xs: '80vw',     
+            sm: '50vw',                     
+            md: '40vw',     
+            lg: '30vw',     
+            xl: '20vw',     
             },
             height:'60vh' }}>
                 <Typography component="h1" variant="h5" style={heading}> Login </Typography>
@@ -62,6 +62,10 @@ export const Login = ({ setIsLoggedIn, isLoggedIn }) => {
                     <TextField onChange={(e) => setPassword(e.target.value)} required style={row} sx={{label: { fontWeight: '700', fontSize:"1.3rem" }}} fullWidth label="Password" variant="outlined" type="password" placeholder="Enter Password" name="password"></TextField>
                     <Button style={btnStyle} variant="contained" type="submit" className="login">Login</Button>                    
                 </form>
+                <br/>
+                <Link to="/forgot-password" style={{ textDecoration: "none", color: "blue" }}>
+            Forgot Password?
+          </Link>
 
                 <p>Don't have an account? <Link to="/signup">SignUp</Link></p>
         </Paper>

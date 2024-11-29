@@ -38,7 +38,7 @@ mongoose.connect("mongodb://localhost:27017/signup")
 
 
 app.listen(3002, () => {
-    console.log(`Server is running on port ${process.env.PORT }`);
+    console.log('Server is running on port ${process.env.PORT }');
 });
 
 app.post("/signup", async (req, res) => {
@@ -101,5 +101,41 @@ app.get('/user', (req, res) => {
         res.json({ user: req.session.user });
     } else {
         res.status(401).json("Not authenticated");
+    }
+});
+
+
+app.post("/reset-password", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = await UserModel.findOneAndUpdate(
+            { email },
+            { password: hashedPassword },
+            { new: true }
+        );
+        if (user) {
+            res.json({ message: "Password reset successfully." });
+        } else {
+            res.status(404).json({ error: "User not found." });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+
+app.post("/check-email", async (req, res) => {
+    try {
+        const { email } = req.body;
+        const user = await UserModel.findOne({ email });
+        if (user) {
+            res.json({ exists: true });
+        } else {
+            res.json({ exists: false });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
