@@ -16,34 +16,25 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
     <div className="main-content">
       {!isAuthPage && <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
       <Routes>
-        {/* Landing Page */}
         <Route path="/" element={<LandingPage />} />
-
-        {/* Home Page */}
         <Route
           path="/home"
           element={
             isLoggedIn ? <Home /> : <Navigate to="/login" replace />
           }
         />
-
-        {/* Login */}
         <Route
           path="/login"
           element={
             isLoggedIn ? <Navigate to="/home" replace /> : <Login setIsLoggedIn={setIsLoggedIn} />
           }
         />
-
-        {/* Signup */}
         <Route
           path="/signup"
           element={
             isLoggedIn ? <Navigate to="/home" replace /> : <Signup setIsLoggedIn={setIsLoggedIn} />
           }
         />
-
-        {/* Forgot Password */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </div>
