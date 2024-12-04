@@ -70,11 +70,11 @@ function App() {
     <BrowserRouter>
       <div className="app">
         <AppContent isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-        <footer className="footer">
+        {/* <footer className="footer">
           <p>
             <strong>Disclaimer:</strong> PrediX can make mistakes. Please use predictions for informational purposes only.
           </p>
-        </footer>
+        </footer> */}
       </div>
     </BrowserRouter>
   );
