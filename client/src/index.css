@@ -1,6 +1,6 @@
-body {
-  background-image: url('assets/background.png');
-  background-size: cover;
+/* body { */
+  /* background-image: url('assets/background.png'); */
+  /* background-size: cover;
   background-position: center; 
   background-repeat: no-repeat;
   display: flex;
@@ -10,9 +10,9 @@ body {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-}
+} */
 
-p {
+/* p {
   font-size: large;
 }
 
@@ -130,7 +130,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-}
+} */
 /* .navbar {
   background-color: #007bff;
   padding: 1rem;
@@ -139,7 +139,7 @@ body {
   font-size: 1.2rem;
 } */
 
-.navbar a {
+/* .navbar a {
   color: white;
   text-decoration: none;
   margin: 0 1rem;
@@ -204,4 +204,4 @@ body {
 }
 
 
-
+ */

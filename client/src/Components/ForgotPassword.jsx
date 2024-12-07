@@ -1,90 +1,95 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Grid, Paper, TextField, Typography, Button } from "@mui/material";
 
 export const ForgotPassword = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [message, setMessage] = useState("");
-    const [step, setStep] = useState(1); // Step 1: Enter email, Step 2: Reset password
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [step, setStep] = useState(1);
 
-    const paperStyle = { padding: "2rem", margin: "100px auto", borderRadius: "1rem", boxShadow: "10px 10px 10px" };
-    const btnStyle = { marginTop: "2rem", fontSize: "1.2rem", fontWeight: "700", backgroundColor: "blue", borderRadius: "0.5rem" };
-
-    const handleEmailSubmit = (e) => {
-        e.preventDefault();
-        axios.post("http://localhost:3002/check-email", { email })
-            .then(response => {
-                if (response.data.exists) {
-                    setStep(2); // Proceed to reset password
-                } else {
-                    setMessage("Email not found.");
-                }
-            })
-            .catch(err => setMessage("Something went wrong!"));
-    };
-
-    const handlePasswordReset = (e) => {
-        e.preventDefault();
-        if (password !== confirmPassword) {
-            setMessage("Passwords do not match.");
-            return;
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:3002/check-email", { email })
+      .then(response => {
+        if (response.data.exists) {
+          setStep(2);
+        } else {
+          setMessage("Email not found.");
         }
-        axios.post("http://localhost:3002/reset-password", { email, password })
-            .then(response => setMessage("Password reset successfully."))
-            .catch(err => setMessage("Something went wrong!"));
-    };
+      })
+      .catch(err => setMessage("Something went wrong!"));
+  };
 
-    return (
-        <Grid align="center">
-            <Paper style={paperStyle} sx={{ width: { xs: '80vw', sm: '50vw', md: '40vw', lg: '30vw', xl: '20vw' }, height: 'auto' }}>
-                <Typography component="h1" variant="h5" style={{ fontSize: "2.5rem", fontWeight: "600" }}>Forgot Password</Typography>
+  const handlePasswordReset = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match.");
+      return;
+    }
+    axios.post("http://localhost:3002/reset-password", { email, password })
+      .then(response => setMessage("Password reset successfully."))
+      .catch(err => setMessage("Something went wrong!"));
+  };
 
-                {step === 1 && (
-                    <form onSubmit={handleEmailSubmit}>
-                        <TextField
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            fullWidth
-                            label="Email"
-                            variant="outlined"
-                            type="email"
-                            placeholder="Enter your email"
-                            style={{ marginTop: "2rem" }}
-                        />
-                        <Button type="submit" style={btnStyle} variant="contained">Next</Button>
-                    </form>
-                )}
+  return (
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
+      <div className="card shadow-lg p-4" style={{ width: "100%", maxWidth: "500px", borderRadius: "10px" }}>
+        <h3 className="text-center mb-3 text-primary">Forgot Password</h3>
 
-                {step === 2 && (
-                    <form onSubmit={handlePasswordReset}>
-                        <TextField
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            fullWidth
-                            label="New Password"
-                            variant="outlined"
-                            type="password"
-                            placeholder="Enter new password"
-                            style={{ marginTop: "2rem" }}
-                        />
-                        <TextField
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                            fullWidth
-                            label="Confirm Password"
-                            variant="outlined"
-                            type="password"
-                            placeholder="Confirm your password"
-                            style={{ marginTop: "1rem" }}
-                        />
-                        <Button type="submit" style={btnStyle} variant="contained">Reset Password</Button>
-                    </form>
-                )}
+        {/* Step 1: Enter Email */}
+        {step === 1 && (
+          <form onSubmit={handleEmailSubmit}>
+            <div className="mb-3">
+              <label className="form-label">Email Address</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-100 mt-3">Next</button>
+          </form>
+        )}
 
-                {message && <Typography style={{ marginTop: "1rem", color: "red" }}>{message}</Typography>}
-            </Paper>
-        </Grid>
-    );
+        {/* Step 2: Reset Password */}
+        {step === 2 && (
+          <form onSubmit={handlePasswordReset}>
+            <div className="mb-3">
+              <label className="form-label">New Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter new password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Confirm Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-success w-100 mt-3">Reset Password</button>
+          </form>
+        )}
+
+        {message && (
+          <div className="mt-3 text-center text-danger">
+            {message}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };

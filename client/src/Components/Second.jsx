@@ -9,7 +9,7 @@ import rrLogo from '../logos/rr.png';
 import srhLogo from '../logos/srh.png';
 import lsgLogo from '../logos/lsg.png';
 import gtLogo from '../logos/gt.png';
-
+import './First.css';
 const teamLogos = {
   'Mumbai Indians': miLogo,
   'Chennai Super Kings': cskLogo,
@@ -172,137 +172,175 @@ function Second({ onBack }) {
     return teamLogos[team] ? <img src={teamLogos[team]} alt={team} /> : null;
   };
 
-  if (formSubmitted) {
-    return (
-<div className="prediction-container">
-  <h3 className="prediction">
-    Predicted Second Innings Score: {prediction} to {prediction + 4}
-  </h3>
-  <div className="team-logos">
-    <div className="team-logo">
-      <h4>Batting Team:</h4>
-      <div className="team-info">
-        <div>{renderTeamLogo(selectedTeams.batting)}</div>
-        <div>{selectedTeams.batting}</div>
+  return (
+    <div className="container mt-4">
+    {formSubmitted ? (
+      <div className="prediction-container text-center">
+        <h3 className="text-center mb-3">
+          Predicted Second Innings Score: {prediction} to {prediction + 4}
+        </h3>
+        
+        <div className="team-logos d-flex justify-content-around mb-4">
+
+          <div className="team-info text-center">
+            {renderTeamLogo(selectedTeams.batting)}
+            <div className="mt-2">{selectedTeams.batting}</div>
+          </div>
+  
+          <div className="team-info text-center">
+            {renderTeamLogo(selectedTeams.bowling)}
+            <div className="mt-2">{selectedTeams.bowling}</div>
+          </div>
+        </div>
+  
+        <div className="text-center">
+          <button className="btn btn-secondary me-2" type="button" onClick={handleReset}>
+            Back
+          </button>
+        </div>
       </div>
-    </div>
-    <div className="team-logo">
-      <h4>Bowling Team:</h4>
-      <div className="team-info">
-        <div>{renderTeamLogo(selectedTeams.bowling)}</div>
-        <div>{selectedTeams.bowling}</div>
-      </div>
-    </div>
-  </div>
-  <button type="button" onClick={handleReset}>
+    ) 
+      : (
+        <div>
+          <h2 className="text-center mb-4">Second Innings Score Prediction</h2>
+          <form onSubmit={handleInningsSubmit} className="needs-validation">
+            <div className="row gx-3 gy-2">
+
+              <div className="col-12">
+                <label>Batting Team:</label>
+                <select
+                  className="form-select"
+                  value={selectedTeams.batting}
+                  onChange={(e) => handleTeamChange('batting', e.target.value)}
+                >
+                  <option value="">Select Batting Team</option>
+                  {teams.map((team) => (
+                    <option key={team} value={team}>
+                      {team}
+                    </option>
+                  ))}
+                </select>
+                {formErrors.batting && <span className="text-danger">{formErrors.batting}</span>}
+              </div>
+
+              <div className="col-12">
+                <label>Bowling Team:</label>
+                <select
+                  className="form-select"
+                  value={selectedTeams.bowling}
+                  onChange={(e) => handleTeamChange('bowling', e.target.value)}
+                  disabled={!selectedTeams.batting}
+                >
+                  <option value="">Select Bowling Team</option>
+                  {teams
+                    .filter((team) => team !== selectedTeams.batting)
+                    .map((team) => (
+                      <option key={team} value={team}>
+                        {team}
+                      </option>
+                    ))}
+                </select>
+                {formErrors.bowling && <span className="text-danger">{formErrors.bowling}</span>}
+              </div>
+
+              <div className="col-12">
+                <label>Venue:</label>
+                <select
+                  className="form-select"
+                  value={venue}
+                  onChange={(e) => handleVenueChange(e.target.value)}
+                >
+                  <option value="">Select Venue</option>
+                  {stadiums.map((stadium) => (
+                    <option key={stadium} value={stadium}>
+                      {stadium}
+                    </option>
+                  ))}
+                </select>
+                {formErrors.venue && <span className="text-danger">{formErrors.venue}</span>}
+              </div>
+
+              <div className="col-12">
+                <label>First Innings Score:</label>
+                <input
+                  className="form-control"
+                  type="number"
+                  name="firstInningsScore"
+                  value={inningsData.firstInningsScore}
+                  onChange={handleInningsDataChange}
+                />
+                {formErrors.firstInningsScore && (
+                  <span className="text-danger">{formErrors.firstInningsScore}</span>
+                )}
+              </div>
+
+              <div className="col-12">
+                <label>Over:</label>
+                <input
+                  className="form-control"
+                  type="number"
+                  name="over"
+                  value={inningsData.over}
+                  onChange={handleInningsDataChange}
+                />
+                {formErrors.over && <span className="text-danger">{formErrors.over}</span>}
+              </div>
+
+              <div className="col-12">
+                <label>Current Score:</label>
+                <input
+                  className="form-control"
+                  type="number"
+                  name="currentScore"
+                  value={inningsData.currentScore}
+                  onChange={handleInningsDataChange}
+                />
+                {formErrors.currentScore && (
+                  <span className="text-danger">{formErrors.currentScore}</span>
+                )}
+              </div>
+
+              <div className="col-12">
+                <label>Wickets Fallen:</label>
+                <input
+                  className="form-control"
+                  type="number"
+                  name="wickets"
+                  value={inningsData.wickets}
+                  onChange={handleInningsDataChange}
+                />
+                {formErrors.wickets && <span className="text-danger">{formErrors.wickets}</span>}
+              </div>
+
+              <div className="text-center">
+  <button 
+    type="submit" 
+    className="btn btn-success me-2" 
+    disabled={loading}
+  >
+    {loading ? 'Predicting...' : 'Predict'}
+  </button>
+  <button
+    type="button"
+    className="btn btn-secondary me-2"
+    onClick={handleReset}
+  >
+    Reset
+  </button>
+  <button 
+    type="button" 
+    className="btn btn-danger" 
+    onClick={onBack}
+  >
     Back
   </button>
 </div>
-
-    );
-  }
-
-  return (
-    <div>
-      <h2 className="Main">Second Innings Score Prediction</h2>
-
-      <form onSubmit={handleInningsSubmit} className='form'>
-        <div>
-          <label>Batting Team:</label>
-          <select
-            value={selectedTeams.batting}
-            onChange={(e) => handleTeamChange('batting', e.target.value)}
-          >
-            <option value="">Select Batting Team</option>
-            {teams.map((team) => (
-              <option key={team} value={team}>
-                {team}
-              </option>
-            ))}
-          </select>
-          {formErrors.batting && <span style={{ color: 'red' }}>{formErrors.batting}</span>}
+            </div>
+          </form>
+          {errorMessage && <p className="text-danger text-center mt-3">{errorMessage}</p>}
         </div>
-        <div>
-          <label>Bowling Team:</label>
-          <select
-            value={selectedTeams.bowling}
-            onChange={(e) => handleTeamChange('bowling', e.target.value)}
-            disabled={!selectedTeams.batting}
-          >
-            <option value="">Select Bowling Team</option>
-            {teams.filter((team) => team !== selectedTeams.batting).map((team) => (
-              <option key={team} value={team}>
-                {team}
-              </option>
-            ))}
-          </select>
-          {formErrors.bowling && <span style={{ color: 'red' }}>{formErrors.bowling}</span>}
-        </div>
-        <div>
-          <label>Venue:</label>
-          <select value={venue} onChange={(e) => handleVenueChange(e.target.value)}>
-            <option value="">Select Venue</option>
-            {stadiums.map((stadium) => (
-              <option key={stadium} value={stadium}>
-                {stadium}
-              </option>
-            ))}
-          </select>
-          {formErrors.venue && <span style={{ color: 'red' }}>{formErrors.venue}</span>}
-        </div>
-        <div>
-          <label>First Innings Score:</label>
-          <input
-            type="number"
-            name="firstInningsScore"
-            value={inningsData.firstInningsScore}
-            onChange={handleInningsDataChange}
-          />
-          {formErrors.firstInningsScore && <span style={{ color: 'red' }}>{formErrors.firstInningsScore}</span>}
-        </div>
-        <div>
-          <label>Over:</label>
-          <input
-            type="number"
-            name="over"
-            value={inningsData.over}
-            onChange={handleInningsDataChange}
-          />
-          {formErrors.over && <span style={{ color: 'red' }}>{formErrors.over}</span>}
-        </div>
-        <div>
-          <label>Current Score:</label>
-          <input
-            type="number"
-            name="currentScore"
-            value={inningsData.currentScore}
-            onChange={handleInningsDataChange}
-          />
-          {formErrors.currentScore && <span style={{ color: 'red' }}>{formErrors.currentScore}</span>}
-        </div>
-        <div>
-          <label>Wickets Fallen:</label>
-          <input
-            type="number"
-            name="wickets"
-            value={inningsData.wickets}
-            onChange={handleInningsDataChange}
-          />
-          {formErrors.wickets && <span style={{ color: 'red' }}>{formErrors.wickets}</span>}
-        </div>
-        <div>
-          <button type="submit" disabled={loading}>
-            {loading ? 'Predicting...' : 'Submit'}
-          </button>
-
-          <button type="button" onClick={handleReset}>Reset</button>
-
-          <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue',  color:'white'}}>Back</button>
-        </div>
-      </form>
-      {errorMessage && <p>{errorMessage}</p>}
+      )}
     </div>
   );
 }
-
 export default Second;

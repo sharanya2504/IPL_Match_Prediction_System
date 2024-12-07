@@ -135,134 +135,164 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
   };
 
   return (
-    <div>
+    <div className="container mt-5">
       {!submitted ? (
-        <form onSubmit={handleSubmit} className="form">
-          <h2 className="Main">Winner Prediction After Inning</h2>
+        <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
+          <h2 className="text-center mb-4">Winner Prediction After Inning</h2>
 
-          {error && <div className="error-message" style={{ color: "red" }}>{error}</div>}
+          {error && <div className="alert alert-danger">{error}</div>}
 
-          <label>
-            Batting Team:
-            <select name="battingTeam" value={formData.battingTeam} onChange={handleChange} required>
+          <div className="form-group mb-3">
+            <label>Batting Team:</label>
+            <select
+              name="battingTeam"
+              className="form-control"
+              value={formData.battingTeam}
+              onChange={handleChange}
+              required
+            >
               <option value="">Select Team</option>
               {allTeams.map((team) => (
                 <option key={team} value={team}>{team}</option>
               ))}
             </select>
-          </label>
+          </div>
 
-          <label>
-            Bowling Team:
-            <select name="bowlingTeam" value={formData.bowlingTeam} onChange={handleChange} required>
+          <div className="form-group mb-3">
+            <label>Bowling Team:</label>
+            <select
+              name="bowlingTeam"
+              className="form-control"
+              value={formData.bowlingTeam}
+              onChange={handleChange}
+              required
+            >
               <option value="">Select Team</option>
-              {allTeams
-                .filter((team) => team !== formData.battingTeam)
-                .map((team) => (
-                  <option key={team} value={team}>{team}</option>
-                ))}
+              {allTeams.filter(team => team !== formData.battingTeam).map((team) => (
+                <option key={team} value={team}>{team}</option>
+              ))}
             </select>
-          </label>
+          </div>
 
-          <label>
-            Venue:
-            <select name="venue" value={formData.venue} onChange={handleChange} required>
+          <div className="form-group mb-3">
+            <label>Venue:</label>
+            <select
+              name="venue"
+              className="form-control"
+              value={formData.venue}
+              onChange={handleChange}
+              required
+            >
               <option value="">Select Venue</option>
               {allVenues.map((venue) => (
                 <option key={venue} value={venue}>{venue}</option>
               ))}
             </select>
-          </label>
+          </div>
 
-          <label>
-            Over:
+          <div className="form-group mb-3">
+            <label>Over:</label>
             <input
               type="number"
               name="over"
-              min="0.1"
-              max="20"
-              step="0.1"
+              className="form-control"
               value={formData.over}
               onChange={handleChange}
               required
             />
-          </label>
+          </div>
 
-          <label>
-            Current Score:
+          <div className="form-group mb-3">
+            <label>Current Score:</label>
             <input
               type="number"
               name="currentScore"
-              min="0"
+              className="form-control"
               value={formData.currentScore}
               onChange={handleChange}
               required
             />
-          </label>
+          </div>
 
-          <label>
-            Wickets Fallen:
+          <div className="form-group mb-3">
+            <label>Wickets Fallen:</label>
             <input
               type="number"
               name="wicketsFallen"
-              min="0"
-              max="10"
+              className="form-control"
               value={formData.wicketsFallen}
               onChange={handleChange}
               required
             />
-          </label>
+          </div>
 
-          <label>
-            First Innings Score:
+          <div className="form-group mb-3">
+            <label>First Innings Score:</label>
             <input
               type="number"
               name="firstInningsScore"
-              min="0"
+              className="form-control"
               value={formData.firstInningsScore}
               onChange={handleChange}
               required
             />
-          </label>
+          </div>
 
-          <div className="button-group">
-            <button type="submit" disabled={loading}>Submit</button>
-            {loading && <p>Loading...</p>}
-            <button type="button" onClick={onBack}>Back</button>
+          <div className="text-center mt-3">
+            <button type="submit" className="btn btn-primary me-2" disabled={loading}>
+              {loading ? 'Predicting...' : 'Submit'}
+            </button>
+            <button type="button" className="btn btn-secondary me-2" onClick={handleGoBack}>
+              Reset
+            </button>
+            <button type="button" className="btn btn-danger" onClick={onBack}>
+              Back
+            </button>
           </div>
         </form>
       ) : (
-        <div style={{ marginTop: '20px' }}>
-          {predictionResult && (
-            <div className="prediction-container">
-              <div className="team-logos">
-                <div className="team-logo">
-                <div className="teamlogo">
-                  {battingLogo && <img src={battingLogo} alt="Batting Team Logo" />}
-                  </div>
-                  <h3 className="team1">{formData.battingTeam}</h3>
+        <div className="text-center mt-4">
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            {/* Batting Team */}
+            <div>
+              <h4>Batting Team</h4>
+              {battingLogo && (
+                <div>
+                  <img src={battingLogo} alt="Batting Team Logo" className="img-fluid" style={{ width: '100px' }} />
+                  <p>{formData.battingTeam}</p>
                 </div>
-                <div className="team-logo">
-                  <div className='teamlogo'>
-                  {bowlingLogo && <img src={bowlingLogo} alt="Bowling Team Logo" />}
-                  </div>
-                  <h3 className="team2">{formData.bowlingTeam}</h3>
-                </div>
-              </div>
-              <div className="winner-logo">
-              <div className='teamlogo'>
-                <h1>Winner is {predictionResult.predicted_team}</h1>
-                {winningLogo && <img src={winningLogo} alt="Winning Team Logo" className="winner-logo" />}
-                </div>
-                <h3 className="winner">{predictionResult.predicted_team}</h3>
-              </div>
-              <button onClick={handleGoBack}>Go Back</button>
+              )}
             </div>
-          )}
+
+            {/* Bowling Team */}
+            <div>
+              <h4>Bowling Team</h4>
+              {bowlingLogo && (
+                <div>
+                  <img src={bowlingLogo} alt="Bowling Team Logo" className="img-fluid" style={{ width: '100px' }} />
+                  <p>{formData.bowlingTeam}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Winner Logo */}
+          <div className="mt-3">
+            <h4>Predicted Winner</h4>
+            {winningLogo && (
+              <div>
+                <img src={winningLogo} alt="Winner Logo" className="img-fluid" style={{ width: '100px' }} />
+                <p>{predictionResult?.predicted_team}</p>
+              </div>
+            )}
+          </div>
+
+          <button className="btn btn-secondary mt-3" onClick={handleGoBack}>Go Back</button>
         </div>
       )}
     </div>
   );
 };
+
 
 export default WinnerAfter;

@@ -9,7 +9,7 @@ import rrLogo from '../logos/rr.png';
 import srhLogo from '../logos/srh.png';
 import lsgLogo from '../logos/lsg.png';
 import gtLogo from '../logos/gt.png';
-
+import './First.css';
 const teamLogos = {
   "Mumbai Indians": miLogo,
   "Chennai Super Kings": cskLogo,
@@ -146,7 +146,7 @@ function First({ onSubmit, onBack }) {
         throw new Error(data.error);
       } else if (data.predicted_first_innings_score !== undefined) {
         setPredictedScore(data.predicted_first_innings_score);
-        setFormSubmitted(true); // Set formSubmitted to true on success
+        setFormSubmitted(true);
       } else {
         throw new Error('Prediction failed: Predicted score not found');
       }
@@ -160,37 +160,45 @@ function First({ onSubmit, onBack }) {
 
   if (formSubmitted && predictedScore !== null) {
     return (
-      <div className='prediction-container'>
-        <h3 className='prediction'>
-          Predicted 1st Innings Score is: {predictedScore} to {predictedScore + 7}
-        </h3>
-        <div className="team-logos">
-          <div className='team-logo'>
-          <div className='teamlogo'>
-            <img src={teamLogos[selectedTeams.batting]} alt={selectedTeams.batting} />
-            </div>
-            <p>{selectedTeams.batting}</p>
-          </div>
-          <div className='team-logo'>
-          <div className='teamlogo'>
-            <img src={teamLogos[selectedTeams.bowling]} alt={selectedTeams.bowling}/>
-            </div>
-            <p>{selectedTeams.bowling}</p>
-          </div>
+      <div className='container mt-4'>
+        <h3 className='text-center mb-3'>Predicted 1st Innings Score</h3>
+        <h4 className='text-center'>{predictedScore} to {predictedScore + 7}</h4>
+        <div className="team-logos d-flex justify-content-around my-4">
+  <div className="text-center">
+    <img
+      src={teamLogos[selectedTeams.batting]}
+      alt={selectedTeams.batting}
+      className="img-thumbnail team-logo"
+    />
+    <p>{selectedTeams.batting}</p>
+  </div>
+  <div className="text-center">
+    <img
+      src={teamLogos[selectedTeams.bowling]}
+      alt={selectedTeams.bowling}
+      className="img-thumbnail team-logo"
+    />
+    <p>{selectedTeams.bowling}</p>
+  </div>
+</div>
+
+        <div className='text-center'>
+          <button className='btn btn-primary' onClick={handleReset}>
+            Go Back
+          </button>
         </div>
-        <button onClick={handleReset}>Go Back</button>
       </div>
     );
   }
 
   return (
-    <div>
-      <h2 className="Main">First Innings Score Prediction</h2>
-
-      <form onSubmit={handleInningsSubmit} className='form'>
-        <div>
-          <label>Batting Team:</label>
+    <div className='container mt-4'>
+      <h2 className="text-center mb-4">First Innings Score Prediction</h2>
+      <form onSubmit={handleInningsSubmit} className='needs-validation'>
+        <div className='mb-3'>
+          <label className="form-label">Batting Team:</label>
           <select
+            className="form-select"
             value={selectedTeams.batting}
             onChange={(e) => handleTeamChange('batting', e.target.value)}
           >
@@ -202,10 +210,10 @@ function First({ onSubmit, onBack }) {
             ))}
           </select>
         </div>
-
-        <div>
-          <label>Bowling Team:</label>
+        <div className='mb-3'>
+          <label className="form-label">Bowling Team:</label>
           <select
+            className="form-select"
             value={selectedTeams.bowling}
             onChange={(e) => handleTeamChange('bowling', e.target.value)}
           >
@@ -219,10 +227,13 @@ function First({ onSubmit, onBack }) {
               ))}
           </select>
         </div>
-
-        <div>
-          <label>Venue:</label>
-          <select value={venue} onChange={(e) => handleVenueChange(e.target.value)}>
+        <div className='mb-3'>
+          <label className="form-label">Venue:</label>
+          <select
+            className="form-select"
+            value={venue}
+            onChange={(e) => handleVenueChange(e.target.value)}
+          >
             <option value="">Select Venue</option>
             {stadiums.map((stadium) => (
               <option key={stadium} value={stadium}>
@@ -231,10 +242,10 @@ function First({ onSubmit, onBack }) {
             ))}
           </select>
         </div>
-
-        <div>
-          <label>Over:</label>
+        <div className='mb-3'>
+          <label className="form-label">Over:</label>
           <input
+            className="form-control"
             type="number"
             name="over"
             min="0"
@@ -244,10 +255,10 @@ function First({ onSubmit, onBack }) {
             onChange={handleInningsDataChange}
           />
         </div>
-
-        <div>
-          <label>Score Till Now:</label>
+        <div className='mb-3'>
+          <label className="form-label">Score Till Now:</label>
           <input
+            className="form-control"
             type="number"
             name="score"
             min="0"
@@ -255,10 +266,10 @@ function First({ onSubmit, onBack }) {
             onChange={handleInningsDataChange}
           />
         </div>
-
-        <div>
-          <label>Wickets Fallen:</label>
+        <div className='mb-3'>
+          <label className="form-label">Wickets Fallen:</label>
           <input
+            className="form-control"
             type="number"
             name="wickets"
             min="0"
@@ -266,16 +277,31 @@ function First({ onSubmit, onBack }) {
             onChange={handleInningsDataChange}
           />
         </div>
+        <div className="text-center">
+  <button 
+    type="submit" 
+    className="btn btn-success me-2" 
+    disabled={loading}
+  >
+    {loading ? 'Predicting...' : 'Predict'}
+  </button>
+  <button
+    type="button"
+    className="btn btn-secondary me-2"
+    onClick={handleReset}
+  >
+    Reset
+  </button>
+  <button 
+    type="button" 
+    className="btn btn-danger" 
+    onClick={onBack}
+  >
+    Back
+  </button>
+</div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Predicting...' : 'Predict'}
-        </button>
-
-        <button type="button" onClick={handleReset}>Reset</button>
-
-        <button type="button" onClick={onBack} style={{ backgroundColor: 'darkblue', color:"white"}}>Back</button>
-
-        {errorMessage && <p className="error">{errorMessage}</p>}
+        {errorMessage && <p className="text-danger text-center mt-3">{errorMessage}</p>}
       </form>
     </div>
   );

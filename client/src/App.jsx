@@ -7,6 +7,7 @@ import { ForgotPassword } from "./Components/ForgotPassword";
 import { Navbar } from "./Components/Navbar";
 import { LandingPage } from "./Components/LandingPage";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function AppContent({ isLoggedIn, setIsLoggedIn }) {
   const location = useLocation();
