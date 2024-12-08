@@ -214,8 +214,8 @@ function Second({ onBack }) {
  
       : (
         <div>
+          <form onSubmit={handleInningsSubmit} className="bg-light p-4 rounded shadow-sm">
           <h2 className="text-center mb-4">Second Innings Score Prediction</h2>
-          <form onSubmit={handleInningsSubmit} className="needs-validation">
             <div className="row gx-3 gy-2">
 
               <div className="col-12">
@@ -224,6 +224,7 @@ function Second({ onBack }) {
                   className="form-select"
                   value={selectedTeams.batting}
                   onChange={(e) => handleTeamChange('batting', e.target.value)}
+                  required
                 >
                   <option value="">Select Batting Team</option>
                   {teams.map((team) => (
@@ -242,6 +243,7 @@ function Second({ onBack }) {
                   value={selectedTeams.bowling}
                   onChange={(e) => handleTeamChange('bowling', e.target.value)}
                   disabled={!selectedTeams.batting}
+                  required
                 >
                   <option value="">Select Bowling Team</option>
                   {teams
@@ -261,6 +263,7 @@ function Second({ onBack }) {
                   className="form-select"
                   value={venue}
                   onChange={(e) => handleVenueChange(e.target.value)}
+                  required
                 >
                   <option value="">Select Venue</option>
                   {stadiums.map((stadium) => (
@@ -280,6 +283,7 @@ function Second({ onBack }) {
                   name="firstInningsScore"
                   value={inningsData.firstInningsScore}
                   onChange={handleInningsDataChange}
+                  required
                 />
                 {formErrors.firstInningsScore && (
                   <span className="text-danger">{formErrors.firstInningsScore}</span>
@@ -294,6 +298,7 @@ function Second({ onBack }) {
                   name="over"
                   value={inningsData.over}
                   onChange={handleInningsDataChange}
+                  required
                 />
                 {formErrors.over && <span className="text-danger">{formErrors.over}</span>}
               </div>
@@ -306,6 +311,7 @@ function Second({ onBack }) {
                   name="currentScore"
                   value={inningsData.currentScore}
                   onChange={handleInningsDataChange}
+                  required
                 />
                 {formErrors.currentScore && (
                   <span className="text-danger">{formErrors.currentScore}</span>
@@ -320,7 +326,9 @@ function Second({ onBack }) {
                   name="wickets"
                   value={inningsData.wickets}
                   onChange={handleInningsDataChange}
+                  required
                 />
+              
                 {formErrors.wickets && <span className="text-danger">{formErrors.wickets}</span>}
               </div>
 

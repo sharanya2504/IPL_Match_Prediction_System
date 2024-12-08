@@ -29,4 +29,18 @@ h1 {
   .red-button:hover {
     background-color: #cc0000;
   }
+
+  .logout-button {
+    background: transparent; /* Completely transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Transparent-like white border */
+    color: white; /* Text remains white */
+    backdrop-filter: blur(4px); /* Optional background blur effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  }
   
+  .logout-button:hover {
+    background: rgba(255, 255, 255, 0.1); /* Subtle white tint on hover */
+    border: 1px solid rgba(255, 255, 255, 1); /* Brighter white border on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+  }
+   

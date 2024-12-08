@@ -193,14 +193,15 @@ function First({ onSubmit, onBack }) {
 
   return (
     <div className='container mt-4'>
+      <form onSubmit={handleInningsSubmit} className="bg-light p-4 rounded shadow-sm">
       <h2 className="text-center mb-4">First Innings Score Prediction</h2>
-      <form onSubmit={handleInningsSubmit} className='needs-validation'>
         <div className='mb-3'>
           <label className="form-label">Batting Team:</label>
           <select
             className="form-select"
             value={selectedTeams.batting}
             onChange={(e) => handleTeamChange('batting', e.target.value)}
+            required
           >
             <option value="">Select Batting Team</option>
             {teams.map((team) => (
@@ -216,6 +217,7 @@ function First({ onSubmit, onBack }) {
             className="form-select"
             value={selectedTeams.bowling}
             onChange={(e) => handleTeamChange('bowling', e.target.value)}
+            required
           >
             <option value="">Select Bowling Team</option>
             {teams
@@ -233,6 +235,7 @@ function First({ onSubmit, onBack }) {
             className="form-select"
             value={venue}
             onChange={(e) => handleVenueChange(e.target.value)}
+            required
           >
             <option value="">Select Venue</option>
             {stadiums.map((stadium) => (
@@ -253,6 +256,7 @@ function First({ onSubmit, onBack }) {
             max="20"
             value={inningsData.over}
             onChange={handleInningsDataChange}
+            required
           />
         </div>
         <div className='mb-3'>
@@ -264,6 +268,7 @@ function First({ onSubmit, onBack }) {
             min="0"
             value={inningsData.score}
             onChange={handleInningsDataChange}
+            required
           />
         </div>
         <div className='mb-3'>
@@ -275,6 +280,7 @@ function First({ onSubmit, onBack }) {
             min="0"
             value={inningsData.wickets}
             onChange={handleInningsDataChange}
+            required
           />
         </div>
         <div className="text-center">

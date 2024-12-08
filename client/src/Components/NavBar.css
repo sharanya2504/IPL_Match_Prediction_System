@@ -1,0 +1,10 @@
+.button-hover {
+    transition: all 0.3s ease; /* Smooth transition for hover */
+  }
+  
+  .button-hover:hover {
+    background: rgba(255, 255, 255, 0.3) !important; /* Slightly more visible background */
+    border: 1px solid rgba(255, 255, 255, 0.8) !important; /* Brighter border */
+    transform: scale(1.05); /* Button scales on hover */
+  }
+  

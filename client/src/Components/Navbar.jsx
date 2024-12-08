@@ -63,7 +63,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logout } from './Logout';
 import { AppBar, Typography, Toolbar, Button } from "@mui/material";
-
+import './navbar.css';
 export const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const buttonStyles = {
     marginRight: '20px',
@@ -74,7 +74,8 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <AppBar 
-      sx={{ bgcolor: '#333' }} 
+    sx={{ bgcolor: 'rgba(51, 51, 51, 0.5)' }}
+ 
       className="navbar navbar-expand-lg navbar-dark fixed-top"
     >
       <Toolbar className="container-fluid">
@@ -108,39 +109,41 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
         >
           {!isLoggedIn ? (
             <div className="d-flex">
-              <Button
-                variant="contained"
-                style={{
-                  ...buttonStyles,
-                  background: "rgba(255, 255, 255, 0.2)",
-                  backdropFilter: "blur(5px)",
-                  border: "1px solid rgba(255, 255, 255, 0.3)",
-                  color: "white",
-                }}
-                color="error"
-                component={Link}
-                to="/login"
-                className="btn btn-outline-light me-3"
-              >
-                Login
-              </Button>
+<Button
+  variant="contained"
+  className="btn btn-outline-light button-hover me-3"
+  style={{
+    ...buttonStyles,
+    background: "rgba(255, 255, 255, 0.1)",
+    backdropFilter: "blur(5px)",
+    border: "1px solid rgba(255, 255, 255, 0.5)",
+    color: "white",
+  }}
+  color="error"
+  component={Link}
+  to="/login"
+>
+  Login
+</Button>
 
-              <Button
-                variant="contained"
-                style={{
-                  ...buttonStyles,
-                  background: "rgba(255, 255, 255, 0.2)",
-                  backdropFilter: "blur(0px)",
-                  border: "1px solid rgba(255, 255, 255, 0.3)",
-                  color: "white",
-                }}
-                color="success"
-                component={Link}
-                to="/signup"
-                className="btn btn-outline-light"
-              >
-                Signup
-              </Button>
+<Button
+  variant="contained"
+  className="btn btn-outline-light button-hover"
+  style={{
+    ...buttonStyles,
+    background: "rgba(255, 255, 255, 0.1)",
+    backdropFilter: "blur(5px)",
+    border: "1px solid rgba(255, 255, 255, 0.5)",
+    color: "white",
+  }}
+  color="success"
+  component={Link}
+  to="/signup"
+>
+  Signup
+</Button>
+
+
             </div>
           ) : (
             <Logout setIsLoggedIn={setIsLoggedIn} />

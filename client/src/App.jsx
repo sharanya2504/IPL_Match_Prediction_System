@@ -8,6 +8,7 @@ import { Navbar } from "./Components/Navbar";
 import { LandingPage } from "./Components/LandingPage";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import "./App.css"; // Add styles for footer
 
 // AppContent renders the main routes and conditionally shows the Navbar
 function AppContent({ isLoggedIn, setIsLoggedIn }) {
@@ -18,12 +19,12 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
   const isAuthPage = authPages.includes(location.pathname);
 
   return (
-    <div className="main-content">
+    <div className="d-flex flex-column min-vh-100">
       {/* Only render navbar if not on auth-related pages */}
       {!isAuthPage && <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
-      
-      {/* Add margin to the content to avoid being hidden under the navbar */}
-      <div style={{ marginTop: isAuthPage ? "0" : "64px" }}>
+
+      {/* Main content */}
+      <div className="flex-grow-1" style={{ marginTop: isAuthPage ? "0" : "64px" }}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route
@@ -41,6 +42,11 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </div>
+
+      {/* Persistent Footer */}
+      <footer className="footer bg-dark text-white text-center py-2">
+        PrediX can make mistakes
+      </footer>
     </div>
   );
 }

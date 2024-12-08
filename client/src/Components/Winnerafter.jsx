@@ -135,12 +135,11 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Winner Prediction After Inning</h2>
+    <div className="container my-4">
       {!submitted ? (
         
         <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
-
+          <h2 className="text-center mb-4">Winner Prediction After Inning</h2>
           {error && <div className="alert alert-danger">{error}</div>}
 
           <div className="form-group mb-3">
