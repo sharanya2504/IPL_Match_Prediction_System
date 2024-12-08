@@ -173,33 +173,45 @@ function Second({ onBack }) {
   };
 
   return (
-    <div className="container mt-4">
-    {formSubmitted ? (
-      <div className="prediction-container text-center">
-        <h3 className="text-center mb-3">
-          Predicted Second Innings Score: {prediction} to {prediction + 4}
-        </h3>
-        
-        <div className="team-logos d-flex justify-content-around mb-4">
+<div className="container mt-4">
+  {formSubmitted ? (
+    <div className="prediction-container text-center">
+      <h3 className="text-center mb-3">
+        Predicted Second Innings Score: {prediction} to {prediction + 4}
+      </h3>
 
-          <div className="team-info text-center">
-            {renderTeamLogo(selectedTeams.batting)}
-            <div className="mt-2">{selectedTeams.batting}</div>
-          </div>
-  
-          <div className="team-info text-center">
-            {renderTeamLogo(selectedTeams.bowling)}
-            <div className="mt-2">{selectedTeams.bowling}</div>
-          </div>
+      <div className="team-logos d-flex justify-content-around mb-4">
+        {/* Batting Team */}
+        <div className="team-info text-center">
+          <img 
+            src={teamLogos[selectedTeams.batting]} 
+            alt={`${selectedTeams.batting} Logo`} 
+            className="img-fluid" 
+            style={{ width: '200px', height: '300px' }} 
+          />
+          <div className="mt-2">{selectedTeams.batting}</div>
         </div>
-  
-        <div className="text-center">
-          <button className="btn btn-secondary me-2" type="button" onClick={handleReset}>
-            Back
-          </button>
+
+        {/* Bowling Team */}
+        <div className="team-info text-center">
+          <img 
+            src={teamLogos[selectedTeams.bowling]} 
+            alt={`${selectedTeams.bowling} Logo`} 
+            className="img-fluid" 
+            style={{ width: '200px', height: '300px' }} 
+          />
+          <div className="mt-2">{selectedTeams.bowling}</div>
         </div>
       </div>
-    ) 
+
+      <div className="text-center">
+        <button className="btn btn-danger me-2" type="button" onClick={handleReset}>
+          Back
+        </button>
+      </div>
+    </div>
+  )
+ 
       : (
         <div>
           <h2 className="text-center mb-4">Second Innings Score Prediction</h2>

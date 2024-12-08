@@ -11,7 +11,7 @@ function AfterHome() {
 
   return (
     <div className="container d-flex flex-column justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      <h1 className="text-center mb-4">IPL Prediction</h1>
+      {/* <h1 className="text-center mb-4">IPL Prediction</h1> */}
 
       {currentView === '' && (
         <div className="d-flex flex-column justify-content-center align-items-center gap-3 mb-4" style={{ width: '100%', maxWidth: '400px' }}>

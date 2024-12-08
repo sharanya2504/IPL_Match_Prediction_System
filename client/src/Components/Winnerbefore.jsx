@@ -230,7 +230,7 @@
 
 
 import React, { useState } from 'react';
-import './WinnerBefore.css';
+// import './WinnerBefore.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Teams and Venues
@@ -442,15 +442,49 @@ function WinnerBefore({ onSubmit, onBack }) {
       {/* Prediction Section */}
       {prediction && (
         <div className="mt-4 text-center">
-          <h4>Prediction Result</h4>
-          <div className="mt-2">
-            <img src={teamLogos[formData.team1]} alt={formData.team1} className="img-fluid mx-5" style={{ width: '200px' ,height:'300px'}} />
-            <img src={teamLogos[formData.team2]} alt={formData.team2} className="img-fluid mx-5" style={{ width: '200px' ,height:'300px'}} />
-            <img src={teamLogos[prediction]} alt={prediction} className="img-fluid mx-2" style={{ width: '200px' ,height:'300px'}} />
-          </div>
-          <h5 className="mt-3">Winner Prediction: {prediction}</h5>
-          <button className="btn btn-danger mt-2" onClick={handleReset}>Reset</button>
-        </div>
+  <h4>Prediction Result</h4>
+
+  {/* Batting and Bowling Teams */}
+  <div className="d-flex justify-content-center align-items-center mt-3">
+    {/* Batting Team */}
+    <div className="mx-5 text-center">
+      <img 
+        src={teamLogos[formData.team1]} 
+        alt={formData.team1} 
+        className="img-fluid" 
+        style={{ width: '200px', height: '200px' }} 
+      />
+      <h6 className="mt-2">{formData.team1}</h6>
+    </div>
+
+    {/* Bowling Team */}
+    <div className="mx-5 text-center">
+      <img 
+        src={teamLogos[formData.team2]} 
+        alt={formData.team2} 
+        className="img-fluid" 
+        style={{ width: '200px', height: '200px' }} 
+      />
+      <h6 className="mt-2">{formData.team2}</h6>
+    </div>
+  </div>
+
+  {/* Winning Team */}
+  <div className="mt-4 text-center">
+    <img 
+      src={teamLogos[prediction]} 
+      alt={prediction} 
+      className="img-fluid" 
+      style={{ width: '200px', height: '200px' }} 
+    />
+    <h5 className="mt-3">Winner: {prediction}</h5>
+  </div>
+
+  {/* Reset Button */}
+  <button className="btn btn-danger mt-4" onClick={handleReset}>Reset</button>
+</div>
+
+
       )}
 
       {error && (

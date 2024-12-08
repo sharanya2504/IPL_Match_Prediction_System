@@ -168,7 +168,7 @@ function First({ onSubmit, onBack }) {
     <img
       src={teamLogos[selectedTeams.batting]}
       alt={selectedTeams.batting}
-      className="img-thumbnail team-logo"
+      className="team-logo"
     />
     <p>{selectedTeams.batting}</p>
   </div>
@@ -176,15 +176,15 @@ function First({ onSubmit, onBack }) {
     <img
       src={teamLogos[selectedTeams.bowling]}
       alt={selectedTeams.bowling}
-      className="img-thumbnail team-logo"
+      className="team-logo"
     />
     <p>{selectedTeams.bowling}</p>
   </div>
 </div>
 
         <div className='text-center'>
-          <button className='btn btn-primary' onClick={handleReset}>
-            Go Back
+          <button className='btn btn-danger' onClick={handleReset}>
+          Back
           </button>
         </div>
       </div>

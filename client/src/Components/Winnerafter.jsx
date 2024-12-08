@@ -136,9 +136,10 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
 
   return (
     <div className="container mt-5">
+      <h2 className="text-center mb-4">Winner Prediction After Inning</h2>
       {!submitted ? (
+        
         <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
-          <h2 className="text-center mb-4">Winner Prediction After Inning</h2>
 
           {error && <div className="alert alert-danger">{error}</div>}
 
@@ -251,44 +252,70 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
           </div>
         </form>
       ) : (
-        <div className="text-center mt-4">
-          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-            {/* Batting Team */}
-            <div>
-              <h4>Batting Team</h4>
-              {battingLogo && (
-                <div>
-                  <img src={battingLogo} alt="Batting Team Logo" className="img-fluid" style={{ width: '100px' }} />
-                  <p>{formData.battingTeam}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Bowling Team */}
-            <div>
-              <h4>Bowling Team</h4>
-              {bowlingLogo && (
-                <div>
-                  <img src={bowlingLogo} alt="Bowling Team Logo" className="img-fluid" style={{ width: '100px' }} />
-                  <p>{formData.bowlingTeam}</p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Winner Logo */}
-          <div className="mt-3">
-            <h4>Predicted Winner</h4>
-            {winningLogo && (
-              <div>
-                <img src={winningLogo} alt="Winner Logo" className="img-fluid" style={{ width: '100px' }} />
-                <p>{predictionResult?.predicted_team}</p>
-              </div>
-            )}
-          </div>
-
-          <button className="btn btn-secondary mt-3" onClick={handleGoBack}>Go Back</button>
+<div className="text-center mt-4">
+  {/* Batting and Bowling Teams */}
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '50px' }}>
+    {/* Batting Team */}
+    <div className="text-center">
+      {/* <h4>Batting Team</h4> */}
+      {battingLogo && (
+        <div>
+          <img 
+            src={battingLogo} 
+            alt="Batting Team Logo" 
+            className="img-fluid" 
+            style={{ width: '200px', height: '200px', borderRadius: '10px' }} 
+          />
+          <p className="mt-2 fw-bold">{formData.battingTeam}</p>
         </div>
+      )}
+    </div>
+
+    {/* Bowling Team */}
+    <div className="text-center">
+      {/* <h4>Bowling Team</h4> */}
+      {bowlingLogo && (
+        <div>
+          <img 
+            src={bowlingLogo} 
+            alt="Bowling Team Logo" 
+            className="img-fluid" 
+            style={{ width: '200px', height: '200px', borderRadius: '10px' }} 
+          />
+          <p className="mt-2 fw-bold">{formData.bowlingTeam}</p>
+        </div>
+      )}
+    </div>
+  </div>
+
+  {/* Winner Team */}
+  <div className="mt-4">
+    {/* <h4>Predicted Winner</h4> */}
+    {winningLogo && (
+      <div className="text-center">
+        <img 
+          src={winningLogo} 
+          alt="Winner Logo" 
+          className="img-fluid" 
+          style={{ width: '200px', height: '200px', borderRadius: '10px' }} 
+        />
+        <p className="mt-2 fw-bold">Winner: {predictionResult?.predicted_team}</p>
+      </div>
+    )}
+  </div>
+
+  {/* Reset Button */}
+  <div className="mt-4">
+    {/* <button className="btn btn-danger" onClick={handleGoBack}>
+      Reset
+    </button> */}
+    <button className="btn btn-danger ms-3" onClick={onBack}>
+      Back
+    </button>
+  </div>
+</div>
+
+
       )}
     </div>
   );
