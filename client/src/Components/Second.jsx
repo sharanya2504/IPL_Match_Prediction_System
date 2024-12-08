@@ -173,7 +173,16 @@ function Second({ onBack }) {
   };
 
   return (
-<div className="container mt-4">
+<div 
+  className="container mt-4" 
+  style={{
+    background: "rgba(255, 255, 255, 0.2)",
+    backdropFilter: "blur(10px)",
+    borderRadius: "10px",
+    padding: "20px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  }}
+>
   {formSubmitted ? (
     <div className="prediction-container text-center">
       <h3 className="text-center mb-3">
@@ -181,31 +190,40 @@ function Second({ onBack }) {
       </h3>
 
       <div className="team-logos d-flex justify-content-around mb-4">
-        {/* Batting Team */}
+
         <div className="team-info text-center">
           <img 
             src={teamLogos[selectedTeams.batting]} 
             alt={`${selectedTeams.batting} Logo`} 
             className="img-fluid" 
-            style={{ width: '200px', height: '300px' }} 
+            style={{ width: '200px', height: '300px', borderRadius: '10px' }} 
           />
-          <div className="mt-2">{selectedTeams.batting}</div>
+          <div className="mt-2 fw-bold">{selectedTeams.batting}</div>
         </div>
 
-        {/* Bowling Team */}
         <div className="team-info text-center">
           <img 
             src={teamLogos[selectedTeams.bowling]} 
             alt={`${selectedTeams.bowling} Logo`} 
             className="img-fluid" 
-            style={{ width: '200px', height: '300px' }} 
+            style={{ width: '200px', height: '300px', borderRadius: '10px' }} 
           />
-          <div className="mt-2">{selectedTeams.bowling}</div>
+          <div className="mt-2 fw-bold">{selectedTeams.bowling}</div>
         </div>
       </div>
 
-      <div className="text-center">
-        <button className="btn btn-danger me-2" type="button" onClick={handleReset}>
+      <div style={{ textAlign: "center" }}>
+        <button 
+          className="btn btn-danger" 
+          type="button" 
+          style={{
+            padding: "10px 20px",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            borderRadius: "5px",
+          }} 
+          onClick={handleReset}
+        >
           Back
         </button>
       </div>

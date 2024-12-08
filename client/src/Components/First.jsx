@@ -160,34 +160,61 @@ function First({ onSubmit, onBack }) {
 
   if (formSubmitted && predictedScore !== null) {
     return (
-      <div className='container mt-4'>
-        <h3 className='text-center mb-3'>Predicted 1st Innings Score</h3>
-        <h4 className='text-center'>{predictedScore} to {predictedScore + 7}</h4>
-        <div className="team-logos d-flex justify-content-around my-4">
-  <div className="text-center">
-    <img
-      src={teamLogos[selectedTeams.batting]}
-      alt={selectedTeams.batting}
-      className="team-logo"
-    />
-    <p>{selectedTeams.batting}</p>
+<div 
+  style={{
+    background: "rgba(255, 255, 255, 0.2)",
+    backdropFilter: "blur(10px)",
+    borderRadius: "15px",
+    padding: "30px",
+    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.2)",
+    width: "80%",
+    margin: "auto",
+  }}
+>
+  <h3 className="text-center mb-3">Predicted 1st Innings Score</h3>
+  <h4 className="text-center">{predictedScore} to {predictedScore + 7}</h4>
+
+  <div 
+    className="team-logos d-flex justify-content-around my-4" 
+    style={{
+      gap: "65px",
+    }}
+  >
+    <div className="text-center">
+      <img
+        src={teamLogos[selectedTeams.batting]}
+        alt={selectedTeams.batting}
+        className="team-logo"
+        style={{
+          width: "180px",
+          height: "180px",
+        }}
+      />
+      <p>{selectedTeams.batting}</p>
+    </div>
+
+    <div className="text-center">
+      <img
+        src={teamLogos[selectedTeams.bowling]}
+        alt={selectedTeams.bowling}
+        className="team-logo"
+        style={{
+          width: "180px",
+          height: "180px",
+        }}
+      />
+      <p>{selectedTeams.bowling}</p>
+    </div>
   </div>
+
   <div className="text-center">
-    <img
-      src={teamLogos[selectedTeams.bowling]}
-      alt={selectedTeams.bowling}
-      className="team-logo"
-    />
-    <p>{selectedTeams.bowling}</p>
+    <button className="btn btn-danger" onClick={handleReset}>
+      Back
+    </button>
   </div>
 </div>
 
-        <div className='text-center'>
-          <button className='btn btn-danger' onClick={handleReset}>
-          Back
-          </button>
-        </div>
-      </div>
+
     );
   }
 

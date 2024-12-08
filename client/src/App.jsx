@@ -44,9 +44,9 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
       </div>
 
       {/* Persistent Footer */}
-      <footer className="footer bg-dark text-white text-center py-2">
+      {/* <footer className="footer bg-dark text-white text-center py-2">
         PrediX can make mistakes
-      </footer>
+      </footer> */}
     </div>
   );
 }

@@ -336,13 +336,10 @@ function WinnerBefore({ onSubmit, onBack }) {
 
   return (
     <div className="container my-4">
-
-      {/* Prediction Form */}
       {!prediction && !error && (
         <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
           <h2 className="text-center mb-4">Winner Prediction Before Match</h2>
           <div className="row g-3">
-            {/* Team 1 Selection */}
             <div className="col-12">
               <label className="form-label">Team 1</label>
               <select 
@@ -359,7 +356,6 @@ function WinnerBefore({ onSubmit, onBack }) {
               </select>
             </div>
 
-            {/* Team 2 Selection */}
             <div className="col-12">
               <label className="form-label">Team 2</label>
               <select 
@@ -379,7 +375,6 @@ function WinnerBefore({ onSubmit, onBack }) {
               </select>
             </div>
 
-            {/* Venue Selection */}
             <div className="col-12">
               <label className="form-label">Venue</label>
               <select 
@@ -396,7 +391,6 @@ function WinnerBefore({ onSubmit, onBack }) {
               </select>
             </div>
 
-            {/* Toss Winner Selection */}
             <div className="col-12">
               <label className="form-label">Toss Winner</label>
               <select
@@ -413,7 +407,6 @@ function WinnerBefore({ onSubmit, onBack }) {
               </select>
             </div>
 
-            {/* Toss Decision */}
             <div className="col-12">
               <label className="form-label">Toss Decision</label>
               <select 
@@ -444,50 +437,74 @@ function WinnerBefore({ onSubmit, onBack }) {
         </form>
       )}
 
-      {/* Prediction Section */}
       {prediction && (
-        <div className="mt-4 text-center">
-  <h4>Prediction Result</h4>
+        <div 
+  style={{
+    background: "rgba(255, 255, 255, 0.2)",
+    backdropFilter: "blur(10px)",
+    borderRadius: "10px", 
+    padding: "20px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  }}
+>
+  <h4 className="text-center text-white">Prediction Result</h4>
 
-  {/* Batting and Bowling Teams */}
   <div className="d-flex justify-content-center align-items-center mt-3">
-    {/* Batting Team */}
+
     <div className="mx-5 text-center">
       <img 
         src={teamLogos[formData.team1]} 
         alt={formData.team1} 
         className="img-fluid" 
-        style={{ width: '200px', height: '200px' }} 
+        style={{ width: "200px", height: "200px" }} 
       />
       <h6 className="mt-2">{formData.team1}</h6>
     </div>
 
-    {/* Bowling Team */}
     <div className="mx-5 text-center">
       <img 
         src={teamLogos[formData.team2]} 
         alt={formData.team2} 
         className="img-fluid" 
-        style={{ width: '200px', height: '200px' }} 
+        style={{ width: "200px", height: "200px" }} 
       />
       <h6 className="mt-2">{formData.team2}</h6>
     </div>
   </div>
 
-  {/* Winning Team */}
   <div className="mt-4 text-center">
     <img 
       src={teamLogos[prediction]} 
       alt={prediction} 
       className="img-fluid" 
-      style={{ width: '200px', height: '200px' }} 
+      style={{ width: "200px", height: "200px" }} 
     />
     <h5 className="mt-3">Winner: {prediction}</h5>
   </div>
 
-  {/* Reset Button */}
-  <button className="btn btn-danger mt-4" onClick={handleReset}>Reset</button>
+  <div style={{ textAlign: "center", marginTop: "20px" }}> 
+    <button 
+      className="btn btn-danger" 
+      style={{
+        background: "rgba(255, 0, 0, 0.8)",
+        border: "none", 
+        padding: "10px 20px", 
+        fontSize: "1rem",
+        fontWeight: "bold",
+        color: "white", 
+        borderRadius: "5px",
+        transition: "background 0.3s ease",
+      }}
+      onMouseEnter={(e) => (e.target.style.background = "rgba(255, 0, 0, 1)")}
+      onMouseLeave={(e) => (e.target.style.background = "rgba(255, 0, 0, 0.8)")}
+      onClick={handleReset}
+    >
+      Back
+    </button>
+  </div>
 </div>
+
+      
 
 
       )}

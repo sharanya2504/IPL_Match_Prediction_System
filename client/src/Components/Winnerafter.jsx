@@ -251,12 +251,18 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
           </div>
         </form>
       ) : (
-<div className="text-center mt-4">
-  {/* Batting and Bowling Teams */}
+<div 
+  style={{
+    background: "rgba(255, 255, 255, 0.2)",
+    backdropFilter: "blur(10px)",
+    borderRadius: "10px",
+    padding: "20px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  }}
+>
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '50px' }}>
-    {/* Batting Team */}
+
     <div className="text-center">
-      {/* <h4>Batting Team</h4> */}
       {battingLogo && (
         <div>
           <img 
@@ -270,9 +276,7 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
       )}
     </div>
 
-    {/* Bowling Team */}
     <div className="text-center">
-      {/* <h4>Bowling Team</h4> */}
       {bowlingLogo && (
         <div>
           <img 
@@ -287,9 +291,7 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
     </div>
   </div>
 
-  {/* Winner Team */}
   <div className="mt-4">
-    {/* <h4>Predicted Winner</h4> */}
     {winningLogo && (
       <div className="text-center">
         <img 
@@ -303,16 +305,22 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
     )}
   </div>
 
-  {/* Reset Button */}
-  <div className="mt-4">
-    {/* <button className="btn btn-danger" onClick={handleGoBack}>
-      Reset
-    </button> */}
-    <button className="btn btn-danger ms-3" onClick={onBack}>
+  <div className="mt-4" style={{ textAlign: 'center' }}>
+    <button 
+      className="btn btn-danger" 
+      style={{
+        padding: "10px 20px", 
+        fontSize: "1rem", 
+        fontWeight: "bold", 
+        borderRadius: "5px",
+      }} 
+      onClick={onBack}
+    >
       Back
     </button>
   </div>
 </div>
+
 
 
       )}
