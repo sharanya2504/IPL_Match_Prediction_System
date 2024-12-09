@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5174', 
+    origin: 'http://localhost:5173', 
     credentials: true,               
   }));
 
@@ -38,7 +38,7 @@ mongoose.connect("mongodb://localhost:27017/signup")
 
 
 app.listen(3002, () => {
-    console.log('Server is running on port ${process.env.PORT }');
+    console.log('Server is running on port 3002');
 });
 
 app.post("/signup", async (req, res) => {
