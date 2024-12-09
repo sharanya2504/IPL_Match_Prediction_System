@@ -8,6 +8,8 @@ import { Navbar } from "./Components/Navbar";
 import { LandingPage } from "./Components/LandingPage";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Bootstrap JS (includes Popper.js)
+
 // import "./App.css"; // Add styles for footer
 
 // AppContent renders the main routes and conditionally shows the Navbar
@@ -58,6 +60,7 @@ function App() {
     axios
       .get("http://localhost:3002/user", { withCredentials: true })
       .then((response) => {
+        console.log("Response:", response);
         if (response?.data?.user) {
           setIsLoggedIn(true);
         } else {
@@ -66,6 +69,7 @@ function App() {
       })
       .catch((error) => {
         console.error("Error fetching user authentication status", error);
+        console.error("Error details:", error.response);
         setIsLoggedIn(false);
       });
   }, []);

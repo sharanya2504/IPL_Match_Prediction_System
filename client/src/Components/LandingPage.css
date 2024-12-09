@@ -1,18 +1,3 @@
-/* .scrollable-container {
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  max-width: 80%;
-  overflow-y: auto;
-}
-  @media (min-width: 768px) {
-    .scrollable-container {
-      overflow-y: visible;
-      height: auto;
-    }
-  } */
-
-  /* Scrollable Container */
 .scrollable-container {
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -83,6 +68,7 @@
 .social-contact-section {
   padding: 10px;
   border-radius: 8px;
+  justify-content: flex-end;
 }
 
 /* Apply a frosted glass-like effect using backdrop-filter */

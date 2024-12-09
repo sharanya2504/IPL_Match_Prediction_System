@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: 'http://localhost:5174', 
     credentials: true,               
   }));
 
@@ -58,6 +58,7 @@ app.post("/signup", async (req, res) => {
 });
     
 
+
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -97,10 +98,10 @@ app.post("/logout", (req, res) => {
 
 app.get('/user', (req, res) => {
     console.log("Session Data:", req.session);
-    if (req.session.user) {
+    if ( req.session && req.session.user) {
         res.json({ user: req.session.user });
     } else {
-        res.status(401).json("Not authenticated");
+        res.status(401).json({ message: "Not authenticated" });
     }
 });
 

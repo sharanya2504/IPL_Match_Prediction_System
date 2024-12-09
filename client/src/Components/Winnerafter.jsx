@@ -199,6 +199,8 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
               value={formData.over}
               onChange={handleChange}
               required
+              min={0}
+              max={20}
             />
           </div>
 
@@ -211,6 +213,8 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
               value={formData.currentScore}
               onChange={handleChange}
               required
+              min={0}
+              max={400}
             />
           </div>
 
@@ -223,6 +227,8 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
               value={formData.wicketsFallen}
               onChange={handleChange}
               required
+              min={0}
+              max={10}
             />
           </div>
 
@@ -235,6 +241,8 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
               value={formData.firstInningsScore}
               onChange={handleChange}
               required
+              min={0}
+              max={400}
             />
           </div>
 

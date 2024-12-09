@@ -137,7 +137,7 @@ function First({ onSubmit, onBack }) {
       });
 
       if (!response.ok) {
-        throw new Error(`Request failed with status: ${response.status}`);
+        throw new Error('Request failed with status: ${response.status}');
       }
 
       const data = await response.json();
@@ -293,6 +293,7 @@ function First({ onSubmit, onBack }) {
             type="number"
             name="score"
             min="0"
+            max='400'
             value={inningsData.score}
             onChange={handleInningsDataChange}
             required
@@ -305,6 +306,7 @@ function First({ onSubmit, onBack }) {
             type="number"
             name="wickets"
             min="0"
+            max="10"
             value={inningsData.wickets}
             onChange={handleInningsDataChange}
             required

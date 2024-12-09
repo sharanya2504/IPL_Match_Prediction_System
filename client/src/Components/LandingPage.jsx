@@ -70,6 +70,8 @@
 
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import "./LandingPage.css";
 
 export const LandingPage = () => {
@@ -96,7 +98,7 @@ export const LandingPage = () => {
             <div className="feature-card">
               <h3>Score Prediction</h3>
               <p>
-                Estimate first and second innings scores with advanced ML models.
+                Estimate first and second innings scores with advanced DL models.
               </p>
             </div>
           </div>
@@ -138,30 +140,44 @@ export const LandingPage = () => {
         </div>
       </div>
 
-      {/* Social Media and Contact Us Section */}
-      <div className="social-contact-section text-center py-4 bg-dark">
-        <div className="social-links-container mb-3">
-          <a href="https://www.instagram.com/surya_teja_7781" target="_blank" className="social-link">
-            Instagram
-          </a>
-          <a href="https://www.facebook.com/" target="_blank" className="social-link">
-            Facebook
-          </a>
-          <a href="https://twitter.com/" target="_blank" className="social-link">
-            Twitter
-          </a>
-        </div>
-        <div className="contact-container">
-          <p className="text-white">
-            Contact us via email at:{" "}
-            <a href="mailto:support@predix.com">suryateja2neti@gmail.com</a>
-          </p>
-          <p className="text-white">
-            Or call us at:{" "}
-            <a href="tel:+123456789">+91 9346315857</a>
-          </p>
-        </div>
-      </div>
+<div className="social-contact-section text-center py-4 bg-dark">
+  <div className="contact-container d-flex flex-wrap align-items-center justify-content-center text-white">
+    <p className="mb-0 me-2">Contact us via email at:</p>
+    <a href="mailto:sharanyalakkamsetti@gmail.com" className="text-white me-4">
+      sharanyalakkamsetti@gmail.com
+    </a>
+    <div className="social-icons d-flex align-items-center">
+      <a
+        href="https://www.instagram.com/sharanya_lakkamsetti"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-link me-3"
+      >
+        <FontAwesomeIcon icon={faInstagram} size="2x" />
+      </a>
+      <a
+        href="https://www.facebook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-link me-3"
+      >
+        <FontAwesomeIcon icon={faFacebook} size="2x" />
+      </a>
+      <a
+        href="https://twitter.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-link"
+      >
+        <FontAwesomeIcon icon={faTwitter} size="2x" />
+      </a>
+    </div>
+  </div>
+  <p className="text-white">
+      Or call us at: <a href="tel:+918247027531">+91 8247027531</a>
+    </p>
+</div>
+
 
       {/* Footer Section */}
       <footer className="footer bg-dark text-white text-center py-2">

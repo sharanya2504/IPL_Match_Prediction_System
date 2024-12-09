@@ -74,7 +74,7 @@ export const Login = ({ setIsLoggedIn, isLoggedIn }) => {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-danger w-100">Login</button>
+              <button type="submit" className="btn btn-primary w-100">Login</button>
             </form>
             <div className="mt-3 text-center">
               <Link to="/forgot-password" className="text-decoration-none text-primary">Forgot Password?</Link>

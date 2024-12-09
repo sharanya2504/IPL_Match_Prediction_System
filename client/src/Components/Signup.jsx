@@ -86,7 +86,7 @@ export const Signup = () => {
             />
             {passwordError && <div className="text-danger mt-1">{passwordError}</div>}
           </div>
-          <button type="submit" className="btn btn-primary btn-danger w-100 mt-3">Sign Up</button>
+          <button type="submit" className="btn btn-primary btn-primary w-100 mt-3">Sign Up</button>
         </form>
         <div className="mt-3 text-center">
           <p>

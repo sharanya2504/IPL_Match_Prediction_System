@@ -302,6 +302,8 @@ function Second({ onBack }) {
                   value={inningsData.firstInningsScore}
                   onChange={handleInningsDataChange}
                   required
+                  min={0}
+                  max={400}
                 />
                 {formErrors.firstInningsScore && (
                   <span className="text-danger">{formErrors.firstInningsScore}</span>
@@ -317,6 +319,8 @@ function Second({ onBack }) {
                   value={inningsData.over}
                   onChange={handleInningsDataChange}
                   required
+                  min={0}
+                  max={20}
                 />
                 {formErrors.over && <span className="text-danger">{formErrors.over}</span>}
               </div>
@@ -330,6 +334,8 @@ function Second({ onBack }) {
                   value={inningsData.currentScore}
                   onChange={handleInningsDataChange}
                   required
+                  min={0}
+                  max={400}
                 />
                 {formErrors.currentScore && (
                   <span className="text-danger">{formErrors.currentScore}</span>
@@ -345,6 +351,8 @@ function Second({ onBack }) {
                   value={inningsData.wickets}
                   onChange={handleInningsDataChange}
                   required
+                  min={0}
+                  max={10}
                 />
               
                 {formErrors.wickets && <span className="text-danger">{formErrors.wickets}</span>}

@@ -1,4 +1,5 @@
 body {
-  background: url(assets/background.png) no-repeat center center fixed;
+  background: url(assets/stadium.png) no-repeat center center fixed;
+  /* background-color: black !important; */
   background-size: cover;
 }
