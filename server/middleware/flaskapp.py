@@ -220,6 +220,7 @@ def predict_winner_after():
 
         if predicted_team not in [batting_team, bowling_team]:
             predicted_team = random.choice([batting_team, bowling_team])
+            
         return jsonify({"predicted_team": predicted_team})
     except Exception as e:
         print(f"Prediction error: {e}")
