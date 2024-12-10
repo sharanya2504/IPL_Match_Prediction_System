@@ -283,7 +283,8 @@ function AfterHome() {
             style={{
               fontSize: "48px",
               fontWeight: "bold",
-              textShadow: "2px 2px 10px rgba(0, 0, 0, 0.3)",
+              textShadow: "2px 2px 10px rgba(0, 0, 0, 0.8)",
+              color:'black'
             }}
           >
             IPL Prediction System
@@ -296,19 +297,19 @@ function AfterHome() {
             <div
               className="d-flex flex-column justify-content-between align-items-center p-4 prediction-card"
               style={{
-                width: "300px",
-                height: "400px",
+                width: "600px",
+                height: "300px",
                 border: "1px solid #ddd",
                 borderRadius: "10px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                backgroundImage: `url('src/assets/stumps.png')`,
+                backgroundImage: `url('src/assets/stumps.jpg')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 color: "white",
               }}
             >
-              <h2 style={{ fontSize: "24px", margin: 0, color: "white" }}>Winner Predictions</h2>
+              <h2 style={{ fontSize: "24px", margin: 0, color: "yellow" }}>Winner Predictions</h2>
               <button
                 onClick={() => setCurrentView("winnerPredictions")}
                 className="btn mt-3"
@@ -316,6 +317,7 @@ function AfterHome() {
                   padding: "10px 20px",
                   fontSize: "16px",
                   borderRadius: "10px",
+                  width:'100px',
                   background: "rgba(30, 144, 255, 0.8)",
                   color: "white",
                   boxShadow: "0 0 10px rgba(30, 144, 255, 0.5)",
@@ -332,18 +334,18 @@ function AfterHome() {
             <div
               className="d-flex flex-column justify-content-between align-items-center p-4 prediction-card"
               style={{
-                width: "300px",
-                height: "400px",
+                width: "600px",
+                height: "300px",
                 border: "1px solid #ddd",
                 borderRadius: "10px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                backgroundImage: `url('src/assets/ball.png')`,
+                backgroundImage: `url('src/assets/bawl.jpg')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
             >
-              <h2 style={{ fontSize: "24px", margin: 0, color: 'white' }}>Score Predictions</h2>
+              <h2 style={{ fontSize: "24px", margin: 0, color: 'yellow' }}>Score Predictions</h2>
               <button
                 onClick={() => setCurrentView("scorePredictions")}
                 className="btn mt-3"
@@ -351,6 +353,7 @@ function AfterHome() {
                   padding: "10px 20px",
                   fontSize: "16px",
                   borderRadius: "10px",
+                  width:'100px',
                   background: "rgba(30, 144, 255, 0.8)",
                   color: "white",
                   boxShadow: "0 0 10px rgba(30, 144, 255, 0.5)",
@@ -372,16 +375,16 @@ function AfterHome() {
           className="d-flex flex-column justify-content-center align-items-center gap-3 mb-4"
           style={{ width: "100%", maxWidth: "600px" }}
         >
-          <h1 className="text-center mb-4">Winner Predictions</h1>
+          <h1 className="text-center mb-4">Winner Predictions<></></h1>
           <div
             className="d-flex justify-content-around gap-4"
-            style={{ width: "100%", color: "white" }}
+            style={{ width: "100%", color: "blue" }}
           >
             <div
               className="d-flex flex-column justify-content-between align-items-center p-4 prediction-card"
               style={{
-                width: "300px",
-                height: "400px",
+                width: "400px",
+                height: "300px",
                 border: "1px solid #ddd",
                 borderRadius: "10px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -429,8 +432,8 @@ function AfterHome() {
             <div
               className="d-flex flex-column justify-content-between align-items-center p-4 prediction-card"
               style={{
-                width: "300px",
-                height: "400px",
+                width: "400px",
+                height: "300px",
                 border: "1px solid #ddd",
                 borderRadius: "10px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -503,8 +506,8 @@ function AfterHome() {
             <div
               className="d-flex flex-column justify-content-between align-items-center p-4 prediction-card"
               style={{
-                width: "300px",
-                height: "400px",
+                width: "400px",
+                height: "300px",
                 border: "1px solid #ddd",
                 borderRadius: "10px",
                 // textAlign: "center",
@@ -545,7 +548,8 @@ function AfterHome() {
             <div
               className="d-flex flex-column justify-content-between align-items-center p-4 prediction-card"
               style={{
-                width: "300px",
+                width: "400px",
+                heigth:"300px",
                 border: "1px solid #ddd",
                 borderRadius: "10px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",

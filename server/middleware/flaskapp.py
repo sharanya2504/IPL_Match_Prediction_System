@@ -6,6 +6,7 @@ import os
 import tensorflow as tf
 import xgboost as xgb
 import joblib
+import random
 from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
@@ -188,26 +189,43 @@ def preprocess_sec_innings(form_data):
 def predict_winner_before():
     try:
         form_data = request.get_json()
+        team1 = form_data['team1']
+        team2 = form_data['team2']
+
         features = preprocess_data_before(form_data)
         prediction = ipl_winner_before_model.predict(features)
         predicted_team = decode_team(int(prediction[0]))
+
+        if predicted_team not in [team1, team2]:
+            predicted_team = random.choice([team1, team2])
+
         return jsonify({"predicted_team": predicted_team})
     except Exception as e:
         print(f"Prediction error: {e}")
         return jsonify({"error": f"Prediction error: {str(e)}"}), 500
 
+
+
 @app.route('/predict/winnerAfter', methods=['POST'])
 def predict_winner_after():
     try:
         form_data = request.get_json()
+        batting_team = form_data['batting_team']
+        bowling_team = form_data['bowling_team']
+
         features = preprocess_data_after(form_data)
         prediction = ipl_winner_after_model.predict(features)
         predicted_team_index = int(np.argmax(prediction, axis=1)[0])
         predicted_team = decode_team(predicted_team_index)
+
+        if predicted_team not in [batting_team, bowling_team]:
+            predicted_team = random.choice([batting_team, bowling_team])
         return jsonify({"predicted_team": predicted_team})
     except Exception as e:
         print(f"Prediction error: {e}")
         return jsonify({"error": f"Prediction error: {str(e)}"}), 500
+
+
 
 @app.route('/predict/firstScore', methods=['POST'])
 def predict_first_score():
