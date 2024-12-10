@@ -135,7 +135,7 @@ const WinnerAfter = ({ onSubmit, onBack }) => {
   };
 
   return (
-    <div className="container my-4">
+    <div className="container my-4" style={{ maxWidth: '600px' }}>
       {!submitted ? (
         
         <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">

@@ -335,7 +335,7 @@ function WinnerBefore({ onSubmit, onBack }) {
   };
 
   return (
-    <div className="container my-4">
+    <div className="container my-4" style={{ maxWidth: '600px' }}>
       {!prediction && !error && (
         <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
           <h2 className="text-center mb-4">Winner Prediction Before Match</h2>
@@ -472,7 +472,7 @@ function WinnerBefore({ onSubmit, onBack }) {
     </div>
   </div>
 
-  <div className="mt-4 text-center">
+  <div className="mt-4 text-center" >
     <img 
       src={teamLogos[prediction]} 
       alt={prediction} 

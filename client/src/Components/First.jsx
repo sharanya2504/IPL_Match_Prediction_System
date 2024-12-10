@@ -219,7 +219,8 @@ function First({ onSubmit, onBack }) {
   }
 
   return (
-    <div className='container mt-4'>
+    <div className='container mt-4'
+    style={{ maxWidth: '600px' }}>
       <form onSubmit={handleInningsSubmit} className="bg-light p-4 rounded shadow-sm">
       <h2 className="text-center mb-4">First Innings Score Prediction</h2>
         <div className='mb-3'>
